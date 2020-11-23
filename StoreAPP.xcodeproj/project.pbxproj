@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F0DA5E5256BE96000294827 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0DA5E4256BE96000294827 /* ViewModel.swift */; };
 		ECBE19F42566BE7600421F29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE19F32566BE7600421F29 /* AppDelegate.swift */; };
 		ECBE19F62566BE7600421F29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE19F52566BE7600421F29 /* SceneDelegate.swift */; };
 		ECBE19FE2566BE7600421F29 /* StoreAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ECBE19FC2566BE7600421F29 /* StoreAPP.xcdatamodeld */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F0DA5E4256BE96000294827 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		ECBE19F02566BE7600421F29 /* StoreAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECBE19F32566BE7600421F29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECBE19F52566BE7600421F29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				ECBE1A4A2566C15A00421F29 /* ProductViewModel.swift */,
+				9F0DA5E4256BE96000294827 /* ViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				ECBE1A4B2566C15A00421F29 /* ProductViewModel.swift in Sources */,
 				ECBE1A502566C16D00421F29 /* CardCategoryCell.swift in Sources */,
 				ECBE1A552566C18500421F29 /* StoreRoomTableViewController.swift in Sources */,
+				9F0DA5E5256BE96000294827 /* ViewModel.swift in Sources */,
 				ECBE1A392566C12700421F29 /* CoreDataService.swift in Sources */,
 				ECBE1A412566C13800421F29 /* ProductRepository.swift in Sources */,
 				ECBE1A462566C14900421F29 /* TabBarCoordinator.swift in Sources */,
