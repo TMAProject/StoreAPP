@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 // swiftlint:disable line_length unused_optional_binding
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

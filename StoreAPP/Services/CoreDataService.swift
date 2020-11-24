@@ -8,16 +8,23 @@
 import UIKit
 import CoreData
 
-class CoreDataService {
+extension NSManagedObject{
+    public var entityName : String {
+        guard let entityName = entity.name else {return "Product"}
+        return entityName
+    }
+}
+class CoreDataService<T:NSManagedObject> {
     let persistentStore: NSPersistentContainer = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let container = appDelegate?.persistentContainer
         guard let persistentContainer = container else {fatalError()}
         return persistentContainer
     }()
-    func fetchAllProduct() -> [NSManagedObject]? {
+    func fetchAll(from: T) -> [T]? {
         let context = persistentStore.viewContext
-        let productFetch = NSFetchRequest<Product>(entityName: "Product")
+        
+        let productFetch = NSFetchRequest<T>(entityName: from.entityName)
         productFetch.sortDescriptors = [NSSortDescriptor(key: Schema.Product.name.rawValue, ascending: true)]
         do {
             let products = try context.fetch(productFetch)
@@ -35,11 +42,10 @@ class CoreDataService {
         }
     }
     
-    func retrieveProduct(from: Product) -> Product?{
+    func retrieveProduct(from: T, predicate: NSPredicate) -> T?{
         let context = persistentStore.viewContext
-        
-        let productFetch = NSFetchRequest<Product>(entityName: "Product")
-        productFetch.predicate  = NSPredicate(format: "productName = %@", from.name)
+        let productFetch = NSFetchRequest<T>(entityName: from.entityName)
+        productFetch.predicate  = predicate
         
         do{
             let managedObject = try context.fetch(productFetch)
@@ -51,8 +57,8 @@ class CoreDataService {
         }
     }
     
-    // adicionado shouldSave para casos em que voce deseja deletar mas nao ira salvar agora o context.
-    func deleteProduct(product: Product, shouldSave: Bool){
+    // Adding should save in case you want to delete but not save the context
+    func deleteProduct(product: T, shouldSave: Bool){
         let context = persistentStore.viewContext
         context.perform {
             context.delete(product)

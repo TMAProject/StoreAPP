@@ -24,6 +24,7 @@ extension Product{
     @NSManaged public var quantity: Int32
     @NSManaged public var idealQuantity: Int32
     @NSManaged public var favorite: Bool
+
 }
 
 enum Schema{
