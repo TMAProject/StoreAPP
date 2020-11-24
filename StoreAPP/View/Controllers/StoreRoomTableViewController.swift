@@ -4,5 +4,13 @@
 //
 //  Created by Fernando de Lucas da Silva Gomes on 19/11/20.
 //
+import UIKit
 
-import Foundation
+class StoreRoomTableViewController: UITableViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.view.backgroundColor = .red
+    }
+}
