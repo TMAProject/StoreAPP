@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct FavoriteListViewModel{
+struct FavoriteListViewModel {
     
    // let productList : [ProductViewModel] = []
    // let repository = ProductRepository()
     
 }
 
-extension FavoriteListViewModel{
-    
+extension FavoriteListViewModel {
+
 //    public var numberOfProducts : Int {
 //        return self.productList.count
 //    }

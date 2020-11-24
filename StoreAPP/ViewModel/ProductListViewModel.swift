@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct ProductListViewModel{
+struct ProductListViewModel {
     
    // let productList : [ProductViewModel] = []
    // let repository = ProductRepository()
     
 }
 
-extension ProductListViewModel{
+extension ProductListViewModel {
     
 //    public var numberOfProducts : Int {
 //        return self.productList.count
@@ -26,7 +26,7 @@ extension ProductListViewModel{
 //            return product
 //        } else { return nil}
 //    }
-    
+
     //public func deleteFromCell(at index: Int) -> ProductViewModel{
         //        if numberOfProducts >= index {
         //            let product = productList[index]
@@ -34,7 +34,7 @@ extension ProductListViewModel{
         //            return product
         //        } else { return nil}
         //    }
-    
+
     //public func favoriteFromCell(at index: Int) -> ProductViewModel{
         //        if numberOfProducts >= index {
         //            let product = productList[index]
@@ -42,8 +42,5 @@ extension ProductListViewModel{
         //            return product
         //        } else { return nil}
         //    }
-    
-    
+
 }
-
-
