@@ -8,23 +8,25 @@
 import UIKit
 import CoreData
 
-extension NSManagedObject{
-    public var entityName : String {
-        guard let entityName = entity.name else {return "Product"}
-        return entityName
-    }
+extension NSManagedObject {
+    static var entityName: String {
+         return String(describing: self)
+     }
 }
+
 class CoreDataService<T:NSManagedObject> {
+
     let persistentStore: NSPersistentContainer = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let container = appDelegate?.persistentContainer
-        guard let persistentContainer = container else {fatalError()}
+        guard let persistentContainer = container else { fatalError() }
         return persistentContainer
     }()
+
     func fetchAll(from: T) -> [T]? {
         let context = persistentStore.viewContext
         
-        let productFetch = NSFetchRequest<T>(entityName: from.entityName)
+        let productFetch = NSFetchRequest<T>(entityName: T.entityName)
         productFetch.sortDescriptors = [NSSortDescriptor(key: Schema.Product.name.rawValue, ascending: true)]
         do {
             let products = try context.fetch(productFetch)
@@ -42,9 +44,9 @@ class CoreDataService<T:NSManagedObject> {
         }
     }
     
-    func retrieveProduct(from: T, predicate: NSPredicate) -> T?{
+    func retrieveProduct(from: T, predicate: NSPredicate) -> T? {
         let context = persistentStore.viewContext
-        let productFetch = NSFetchRequest<T>(entityName: from.entityName)
+        let productFetch = NSFetchRequest<T>(entityName: T.entityName)
         productFetch.predicate  = predicate
         
         do{
@@ -58,7 +60,7 @@ class CoreDataService<T:NSManagedObject> {
     }
     
     // Adding should save in case you want to delete but not save the context
-    func deleteProduct(product: T, shouldSave: Bool){
+    func deleteProduct(product: T, shouldSave: Bool) {
         let context = persistentStore.viewContext
         context.perform {
             context.delete(product)
