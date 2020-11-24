@@ -6,42 +6,41 @@
 //
 
 import UIKit
-class CardCategoryCell : UICollectionViewCell{
-    
-    func config(image: UIImage, text: String){
-        self.cardImage.image = image
-        self.label.text = text
+class CardCategoryCell: UICollectionViewCell {
+
+    func config(image: UIImage, text: String) {
+    self.cardImage.image = image
+    self.label.text = text
     }
-    let cardImage : UIImageView = {
+    let cardImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    
-    let label : UILabel = {
+
+    let label: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 11)
         return label
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
         setupConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
         setupConstraints()
     }
-    
+
     func setupView() {
         self.addSubview(cardImage)
         self.addSubview(label)
     }
-    
-    
+
     func setupConstraints() {
         cardImage.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -54,4 +53,3 @@ class CardCategoryCell : UICollectionViewCell{
         ])
     }
 }
-
