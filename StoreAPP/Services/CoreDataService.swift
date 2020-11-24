@@ -31,7 +31,6 @@ class CoreDataService<T: NSManagedObject> {
 
     func fetchAll(from: T) -> [T]? {
         let context = persistentStore.viewContext
-        
         let productFetch = NSFetchRequest<T>(entityName: T.entityName)
         productFetch.sortDescriptors = [NSSortDescriptor(key: Schema.Product.name.rawValue, ascending: true)]
         do {
@@ -53,28 +52,25 @@ class CoreDataService<T: NSManagedObject> {
             return false
         }
     }
-    
+
     func retrieveProduct(from: T, predicate: NSPredicate) -> T? {
         let context = persistentStore.viewContext
         let productFetch = NSFetchRequest<T>(entityName: T.entityName)
         productFetch.predicate  = predicate
-        
-        do{
+        do {
             let managedObject = try context.fetch(productFetch)
             return managedObject[0]
-            
-        } catch let error as NSError{
-            print (error)
+        } catch let error as NSError {
+            print(error)
             return nil
         }
     }
-    
     // Adding should save in case you want to delete but not save the context
     func deleteProduct(product: T, shouldSave: Bool) {
         let context = persistentStore.viewContext
         context.perform {
             context.delete(product)
-            if shouldSave{
+            if shouldSave {
                 context.save(with: "deleting product")
             }
         }
