@@ -9,11 +9,11 @@ import Foundation
 import CoreData
 
 @objc(Product)
-public class Product: NSManagedObject{
+public class Product: NSManagedObject {
 
 }
 
-extension Product{
+extension Product {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Product> {
         return NSFetchRequest<Product>(entityName: "Product")
@@ -27,8 +27,8 @@ extension Product{
 
 }
 
-enum Schema{
-    enum Product: String{
+enum Schema {
+    enum Product: String {
         case name
     }
 }

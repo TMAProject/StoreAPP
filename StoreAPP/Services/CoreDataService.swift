@@ -14,7 +14,7 @@ extension NSManagedObject {
      }
 }
 
-class CoreDataService<T:NSManagedObject> {
+class CoreDataService<T: NSManagedObject> {
 
     let persistentStore: NSPersistentContainer = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -25,7 +25,6 @@ class CoreDataService<T:NSManagedObject> {
 
     func fetchAll(from: T) -> [T]? {
         let context = persistentStore.viewContext
-        
         let productFetch = NSFetchRequest<T>(entityName: T.entityName)
         productFetch.sortDescriptors = [NSSortDescriptor(key: Schema.Product.name.rawValue, ascending: true)]
         do {
@@ -43,28 +42,25 @@ class CoreDataService<T:NSManagedObject> {
             context.save(with: "saving product")
         }
     }
-    
+
     func retrieveProduct(from: T, predicate: NSPredicate) -> T? {
         let context = persistentStore.viewContext
         let productFetch = NSFetchRequest<T>(entityName: T.entityName)
         productFetch.predicate  = predicate
-        
-        do{
+        do {
             let managedObject = try context.fetch(productFetch)
             return managedObject[0]
-            
-        } catch let error as NSError{
-            print (error)
+        } catch let error as NSError {
+            print(error)
             return nil
         }
     }
-    
     // Adding should save in case you want to delete but not save the context
     func deleteProduct(product: T, shouldSave: Bool) {
         let context = persistentStore.viewContext
         context.perform {
             context.delete(product)
-            if shouldSave{
+            if shouldSave {
                 context.save(with: "deleting product")
             }
         }
