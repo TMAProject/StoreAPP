@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 class CardCategoryCell : UICollectionViewCell{
     
     func config(image: UIImage, text: String){
@@ -55,3 +54,4 @@ class CardCategoryCell : UICollectionViewCell{
         ])
     }
 }
+

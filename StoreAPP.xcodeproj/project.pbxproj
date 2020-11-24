@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180690AC256BE8BE00EF545C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180690AB256BE8BE00EF545C /* Category.swift */; };
 		9F0DA5E5256BE96000294827 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0DA5E4256BE96000294827 /* ViewModel.swift */; };
 		ECBE19F42566BE7600421F29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE19F32566BE7600421F29 /* AppDelegate.swift */; };
 		ECBE19F62566BE7600421F29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE19F52566BE7600421F29 /* SceneDelegate.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180690AB256BE8BE00EF545C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		9F0DA5E4256BE96000294827 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		ECBE19F02566BE7600421F29 /* StoreAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECBE19F32566BE7600421F29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				ECBE1A592566C19000421F29 /* Product.swift */,
+				180690AB256BE8BE00EF545C /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				ECBE1A5A2566C19000421F29 /* Product.swift in Sources */,
 				ECBE19F62566BE7600421F29 /* SceneDelegate.swift in Sources */,
 				ECBE19FE2566BE7600421F29 /* StoreAPP.xcdatamodeld in Sources */,
+				180690AC256BE8BE00EF545C /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
