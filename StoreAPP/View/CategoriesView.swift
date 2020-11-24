@@ -12,13 +12,14 @@ class CategoriesView: UIView {
 
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isPagingEnabled = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "id")
+        collectionView.backgroundColor = .systemBackground
+
+        collectionView.register(CardCategoryCell.self, forCellWithReuseIdentifier: CardCategoryCell.reuseIdentifier)
 
         return collectionView
     }()
@@ -52,7 +53,7 @@ class CategoriesView: UIView {
 
 extension CategoriesView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return Category.allCases.count
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -75,9 +76,13 @@ extension CategoriesView: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "id", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCategoryCell.reuseIdentifier, for: indexPath) as? CardCategoryCell
 
-        cell.backgroundColor = .green
-        return cell
+        guard let cardCategoryCell = cell, let category = Category(rawValue: indexPath.row) else {
+            return CardCategoryCell()
+        }
+
+        cardCategoryCell.configure(image: category.icon, text: category.title)
+        return cardCategoryCell
     }
 }

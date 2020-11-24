@@ -8,19 +8,22 @@
 import UIKit
 class CardCategoryCell: UICollectionViewCell {
 
-    func config(image: UIImage, text: String) {
-    self.cardImage.image = image
-    self.label.text = text
-    }
+    static let reuseIdentifier = "CardCategoryCell"
+
     let cardImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
     let label: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 11)
+        label.font = .systemFont(ofSize: 12, weight: .semibold)
+        label.textColor = .systemGray
+
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -36,20 +39,23 @@ class CardCategoryCell: UICollectionViewCell {
         setupConstraints()
     }
 
+    func configure(image: UIImage, text: String) {
+        self.cardImage.image = image
+        self.label.text = text
+    }
+
     func setupView() {
         self.addSubview(cardImage)
         self.addSubview(label)
     }
 
     func setupConstraints() {
-        cardImage.translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cardImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            cardImage.topAnchor.constraint(equalTo: self.topAnchor),
-            cardImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.69),
-            label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            label.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            self.cardImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.cardImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.69),
+            self.cardImage.bottomAnchor.constraint(equalTo: self.label.topAnchor, constant: -8),
+            self.label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.label.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 }
