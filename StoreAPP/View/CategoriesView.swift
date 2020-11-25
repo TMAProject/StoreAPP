@@ -10,6 +10,8 @@ import UIKit
 
 class CategoriesView: UITableViewHeaderFooterView {
 
+    static let reuseIdentifier = "header"
+
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -43,7 +45,7 @@ class CategoriesView: UITableViewHeaderFooterView {
 
     private func configureLayout() {
         NSLayoutConstraint.activate([
-            self.collectionView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 2),
             self.collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             self.collectionView.leftAnchor.constraint(equalTo: self.leftAnchor),
             self.collectionView.rightAnchor.constraint(equalTo: self.rightAnchor)

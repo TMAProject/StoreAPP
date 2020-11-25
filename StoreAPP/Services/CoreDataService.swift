@@ -8,6 +8,8 @@
 import UIKit
 import CoreData
 
+// swiftlint:disable line_length
+
 extension NSManagedObject {
     static var entityName: String {
          return String(describing: self)
@@ -23,6 +25,11 @@ class CoreDataService<T: NSManagedObject> {
         return persistentContainer
     }()
 
+    func new() -> T {
+        guard let entity = NSEntityDescription.entity(forEntityName: T.entityName, in: persistentStore.viewContext) else { fatalError("Parabéns!") }
+        return T(entity: entity, insertInto: persistentStore.viewContext)
+    }
+
     func fetchAll(from: T) -> [T]? {
         let context = persistentStore.viewContext
         let productFetch = NSFetchRequest<T>(entityName: T.entityName)
@@ -36,10 +43,14 @@ class CoreDataService<T: NSManagedObject> {
         }
     }
 
-    func save() {
+    func save() -> Bool {
         let context = persistentStore.viewContext
-        context.perform {
-            context.save(with: "saving product")
+        do {
+            try context.save()
+            return true
+        } catch {
+            context.handleSavingError(error, info: "Saving with error")
+            return false
         }
     }
 
