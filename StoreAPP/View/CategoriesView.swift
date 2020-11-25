@@ -8,7 +8,7 @@
 import UIKit
 // swiftlint:disable line_length
 
-class CategoriesView: UIView {
+class CategoriesView: UITableViewHeaderFooterView {
 
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -24,8 +24,8 @@ class CategoriesView: UIView {
         return collectionView
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         self.setup()
         self.configureLayout()
     }

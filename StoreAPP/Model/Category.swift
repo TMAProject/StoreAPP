@@ -57,7 +57,7 @@ enum Category: Int, CaseIterable {
             return UIImage.init(named: "others")!
         }
     }
-    
+
     var title: String {
         switch self {
         case .drinks:

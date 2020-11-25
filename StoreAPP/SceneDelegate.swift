@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let storeRoomVC = StoreRoomTableViewController()
         let navigation = UINavigationController(rootViewController: storeRoomVC)
-        window.rootViewController = ViewController()
+        window.rootViewController = navigation
 
         self.window = window
         window.makeKeyAndVisible()
