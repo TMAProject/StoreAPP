@@ -56,13 +56,23 @@ class ProductRepository: Repository {
     func favorite(object: Product) -> Product? {
         if !object.favorite {
             object.favorite = true
+            service.save()
+            return object
+        }
+           return nil
+    }
+
+    func unfavorite(object: Product) -> Product? {
+        if object.favorite {
+            object.favorite = false
+            service.save()
             return object
         }
            return nil
     }
 
     func getFavorites() -> [Product] {
-        let predicate = NSPredicate(format: "favorite: %@", "True")
+        let predicate = NSPredicate(format: "favorite = %@", NSNumber(value: true))
         guard let products = service.retrieve(predicate: predicate) else { return [] }
         return products
     }
