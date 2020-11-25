@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Category: Int {
+enum Category: Int, CaseIterable {
     case drinks
     case candies
     case dry
@@ -55,6 +55,27 @@ enum Category: Int {
             return UIImage.init(named: "fruit")!
         case .others:
             return UIImage.init(named: "others")!
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .drinks:
+            return "Bebidas"
+        case .candies:
+            return "Doces"
+        case .dry:
+            return "Secos"
+        case .pickled:
+            return "Conserva"
+        case .spices:
+            return "Temperos"
+        case .vegetables:
+            return "Vegetais"
+        case .fruit:
+            return "Frutas"
+        case .others:
+            return "Outros"
         }
     }
 }

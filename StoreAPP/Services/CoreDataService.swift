@@ -8,6 +8,8 @@
 import UIKit
 import CoreData
 
+// swiftlint:disable line_length
+
 extension NSManagedObject {
     static var entityName: String {
          return String(describing: self)
@@ -25,7 +27,7 @@ class CoreDataService<T: NSManagedObject> {
 
     func new() -> T {
         guard let entity = NSEntityDescription.entity(forEntityName: T.entityName, in: persistentStore.viewContext)
-        else { fatalError("Erro") }
+        else { fatalError("Parabéns!") }
         return T(entity: entity, insertInto: persistentStore.viewContext)
     }
 
