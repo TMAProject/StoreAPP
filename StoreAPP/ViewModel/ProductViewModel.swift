@@ -7,6 +7,14 @@
 
 import Foundation
 
+struct ProductV {
+    var name: String
+    var category: Int16
+    var quatity: Int32
+    var idealQuantity: Int32
+    var favorite: Bool
+}
+
 //struct ProductViewModel: ViewModel {
 //
 //    let product: Product
