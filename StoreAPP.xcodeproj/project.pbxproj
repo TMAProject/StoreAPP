@@ -11,6 +11,8 @@
 		9F0DA5E5256BE96000294827 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0DA5E4256BE96000294827 /* ViewModel.swift */; };
 		EC3077A2256D367100FB4274 /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3077A1256D367100FB4274 /* ProductListViewModel.swift */; };
 		EC3077A7256D3B3500FB4274 /* FavoriteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3077A6256D3B3500FB4274 /* FavoriteListViewModel.swift */; };
+		9F0DA5F3256BFE8F00294827 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0DA5F2256BFE8F00294827 /* Repository.swift */; };
+		9FD7C61D256D45E000E25C77 /* RepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD7C61C256D45E000E25C77 /* RepositoryTest.swift */; };
 		ECBE19F42566BE7600421F29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE19F32566BE7600421F29 /* AppDelegate.swift */; };
 		ECBE19F62566BE7600421F29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE19F52566BE7600421F29 /* SceneDelegate.swift */; };
 		ECBE19FE2566BE7600421F29 /* StoreAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ECBE19FC2566BE7600421F29 /* StoreAPP.xcdatamodeld */; };
@@ -49,6 +51,8 @@
 		9F0DA5E4256BE96000294827 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		EC3077A1256D367100FB4274 /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
 		EC3077A6256D3B3500FB4274 /* FavoriteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModel.swift; sourceTree = "<group>"; };
+		9F0DA5F2256BFE8F00294827 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		9FD7C61C256D45E000E25C77 /* RepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTest.swift; sourceTree = "<group>"; };
 		ECBE19F02566BE7600421F29 /* StoreAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECBE19F32566BE7600421F29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECBE19F52566BE7600421F29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			children = (
 				ECBE1A0D2566BE7900421F29 /* StoreAPPTests.swift */,
 				ECBE1A0F2566BE7900421F29 /* Info.plist */,
+				9FD7C61C256D45E000E25C77 /* RepositoryTest.swift */,
 			);
 			path = StoreAPPTests;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				ECBE1A402566C13800421F29 /* ProductRepository.swift */,
+				9F0DA5F2256BFE8F00294827 /* Repository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				9F0DA5E5256BE96000294827 /* ViewModel.swift in Sources */,
 				ECBE1A392566C12700421F29 /* CoreDataService.swift in Sources */,
 				ECBE1A412566C13800421F29 /* ProductRepository.swift in Sources */,
+				9F0DA5F3256BFE8F00294827 /* Repository.swift in Sources */,
 				ECBE1A462566C14900421F29 /* TabBarCoordinator.swift in Sources */,
 				EC3077A2256D367100FB4274 /* ProductListViewModel.swift in Sources */,
 				ECBE19F42566BE7600421F29 /* AppDelegate.swift in Sources */,
@@ -402,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECBE1A0E2566BE7900421F29 /* StoreAPPTests.swift in Sources */,
+				9FD7C61D256D45E000E25C77 /* RepositoryTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

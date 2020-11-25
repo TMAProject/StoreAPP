@@ -14,7 +14,7 @@ extension NSManagedObject {
      }
 }
 
-class CoreDataService<T:NSManagedObject> {
+class CoreDataService<T: NSManagedObject> {
 
     let persistentStore: NSPersistentContainer = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -23,11 +23,16 @@ class CoreDataService<T:NSManagedObject> {
         return persistentContainer
     }()
 
-    func fetchAll(from: T) -> [T]? {
+    func new() -> T {
+        guard let entity = NSEntityDescription.entity(forEntityName: T.entityName, in: persistentStore.viewContext)
+        else { fatalError("Erro") }
+        return T(entity: entity, insertInto: persistentStore.viewContext)
+    }
+
+    func fetchAll() -> [T]? {
         let context = persistentStore.viewContext
-        
         let productFetch = NSFetchRequest<T>(entityName: T.entityName)
-        productFetch.sortDescriptors = [NSSortDescriptor(key: Schema.Product.name.rawValue, ascending: true)]
+        productFetch.sortDescriptors = [NSSortDescriptor(key: Schema.Field.name.rawValue, ascending: true)]
         do {
             let products = try context.fetch(productFetch)
             return products
@@ -37,34 +42,35 @@ class CoreDataService<T:NSManagedObject> {
         }
     }
 
-    func save() {
+    func save() -> Bool {
         let context = persistentStore.viewContext
-        context.perform {
-            context.save(with: "saving product")
+        do {
+            try context.save()
+            return true
+        } catch {
+            context.handleSavingError(error, info: "Saving with error")
+            return false
         }
     }
-    
-    func retrieveProduct(from: T, predicate: NSPredicate) -> T? {
+
+    func retrieve(predicate: NSPredicate) -> [T]? {
         let context = persistentStore.viewContext
         let productFetch = NSFetchRequest<T>(entityName: T.entityName)
         productFetch.predicate  = predicate
-        
-        do{
-            let managedObject = try context.fetch(productFetch)
-            return managedObject[0]
-            
-        } catch let error as NSError{
-            print (error)
+        do {
+            let objects = try context.fetch(productFetch)
+            return objects
+        } catch let error as NSError {
+            print(error)
             return nil
         }
     }
-    
     // Adding should save in case you want to delete but not save the context
-    func deleteProduct(product: T, shouldSave: Bool) {
+    func delete(object: T, shouldSave: Bool) {
         let context = persistentStore.viewContext
         context.perform {
-            context.delete(product)
-            if shouldSave{
+            context.delete(object)
+            if shouldSave {
                 context.save(with: "deleting product")
             }
         }

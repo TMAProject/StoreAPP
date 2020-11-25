@@ -7,40 +7,50 @@
 
 import Foundation
 
-struct ProductListViewModel {
-    
-   // let productList : [ProductViewModel] = []
-   // let repository = ProductRepository()
-    
+class ProductListViewModel {
+
+    var productList: [ProductViewModel] = []
+    let repository = ProductRepository()
+    let category: Int
+
+    init(category: Int) {
+        self.category = category
+    }
 }
 
 extension ProductListViewModel {
-    
-//    public var numberOfProducts : Int {
-//        return self.productList.count
-//    }
-//
-//    public func productForCell(at index: Int) -> ProductViewModel? {
-//        if numberOfProducts >= index {
-//            let product = productList[index]
-//            return product
-//        } else { return nil}
-//    }
+    public func getProductsViewModel() -> [ProductViewModel] {
+        let array = repository.getFromCategory(from: self.category)
+        let arrayList = array.compactMap(ProductViewModel.init)
+        self.productList = arrayList
+        return arrayList
+    }
 
-    //public func deleteFromCell(at index: Int) -> ProductViewModel{
-        //        if numberOfProducts >= index {
-        //            let product = productList[index]
-        //              repository.delete(product)
-        //            return product
-        //        } else { return nil}
-        //    }
+    public var numberOfProducts: Int {
+        return self.productList.count
+    }
 
-    //public func favoriteFromCell(at index: Int) -> ProductViewModel{
-        //        if numberOfProducts >= index {
-        //            let product = productList[index]
-        //              repository.favorite(product)
-        //            return product
-        //        } else { return nil}
-        //    }
+    public func productForCell(at index: Int) -> ProductViewModel? {
+        if numberOfProducts >= index {
+            let product = productList[index]
+            return product
+        } else { return nil }
+    }
+
+    public func deleteFromCell(at index: Int) -> Product? {
+        if numberOfProducts >= index {
+            let product = productList[index]
+            _ = repository.delete(object: product.product)
+            return product.product
+        } else { return nil }
+    }
+
+    public func favoriteFromCell(at index: Int) -> ProductViewModel? {
+        if numberOfProducts >= index {
+            let product = productList[index]
+            _ = repository.favorite(object: product.product)
+            return product
+        } else { return nil}
+    }
 
 }

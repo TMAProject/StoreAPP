@@ -16,7 +16,7 @@ enum Category: Int {
     case vegetables
     case fruit
     case others
-    
+
     var color: UIColor {
         switch self {
         case .drinks:

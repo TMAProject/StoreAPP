@@ -7,23 +7,29 @@
 
 import Foundation
 
-struct FavoriteListViewModel {
-    
-   // let productList : [ProductViewModel] = []
-   // let repository = ProductRepository()
-    
+class FavoriteListViewModel {
+
+    var favoritesList: [ProductViewModel] = []
+    let repository = ProductRepository()
+
 }
 
 extension FavoriteListViewModel {
 
-//    public var numberOfProducts : Int {
-//        return self.productList.count
-//    }
-//
-//    public func productForCell(at index: Int) -> ProductViewModel? {
-//        if numberOfProducts >= index {
-//            let product = productList[index]
-//            return product
-//        } else { return nil}
-//    }
+    public func getProductViewModel() {
+        let array = repository.getFavorites()
+        let arrayList = array.compactMap(ProductViewModel.init)
+        self.favoritesList = arrayList
+    }
+
+    public var numberOfFavorites: Int {
+        return self.favoritesList.count
+    }
+
+    public func productForCell(at index: Int) -> ProductViewModel? {
+        if numberOfFavorites >= index {
+            let product = favoritesList[index]
+            return product
+        } else { return nil}
+    }
 }
