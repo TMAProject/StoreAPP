@@ -9,13 +9,10 @@ import UIKit
 
 class ProductListViewController: UITableViewController {
 
-	let category: Category
-
 	let viewModel: ProductListViewModel
 
-	init(category: Category) {
-		self.category = category
-		self.viewModel = ProductListViewModel(category: category.rawValue)
+	init(viewModel: ProductListViewModel) {
+		self.viewModel = viewModel
 		super.init(style: .grouped)
 	}
 
@@ -34,7 +31,8 @@ class ProductListViewController: UITableViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		navigationItem.title = category.title
+		navigationItem.title = viewModel.category.title
+		_ = viewModel.getProductsViewModel()
 		navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add,
 																 target: self,
 																 action: #selector(addButtonAction))
@@ -49,9 +47,7 @@ class ProductListViewController: UITableViewController {
 										  idealQuantity: 5,
 										  favorite: true)
 
-			let newAddedProduct = viewModel.repository.add(object: newMockProduct)
-			print(newAddedProduct ?? "")
-			print(viewModel.getProductsViewModel().count)
+			_ = viewModel.repository.add(object: newMockProduct)
 		}
 	}
 
@@ -69,7 +65,7 @@ class ProductListViewController: UITableViewController {
 extension ProductListViewController {
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return viewModel.getProductsViewModel().count
+		return viewModel.numberOfProducts
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

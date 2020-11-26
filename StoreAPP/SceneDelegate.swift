@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: scene)
 
-//        let storeRoomVC = StoreRoomTableViewController()
-		let storeRoomVC = ProductListViewController(category: .dry) // temporariamente mocado, vai ser chamado futuramente no coordinator
+        let storeRoomVC = StoreRoomTableViewController()
+//		let storeRoomVC = ProductListViewController(viewModel: ProductListViewModel(category: .dry)) // temporariamente mocado, vai ser chamado futuramente no coordinator
         let navigation = UINavigationController(rootViewController: storeRoomVC)
         window.rootViewController = navigation
 

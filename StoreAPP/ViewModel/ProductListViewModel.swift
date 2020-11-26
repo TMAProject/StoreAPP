@@ -11,16 +11,16 @@ class ProductListViewModel {
 
     var productList: [ProductViewModel] = []
     let repository = ProductRepository()
-    let category: Int
+    let category: Category
 
-    init(category: Int) {
+    init(category: Category) {
         self.category = category
     }
 }
 
 extension ProductListViewModel {
     public func getProductsViewModel() -> [ProductViewModel] {
-        let array = repository.getFromCategory(from: self.category)
+		let array = repository.getFromCategory(from: self.category.rawValue)
         let arrayList = array.compactMap(ProductViewModel.init)
         self.productList = arrayList
         return arrayList
