@@ -31,6 +31,10 @@ extension ProductViewModel {
         return product.name
     }
 
+    var description: String {
+        return "Qtd: \(self.quantity) / \(self.idealQuantity)"
+    }
+
     var category: Int16 {
         return product.category
     }

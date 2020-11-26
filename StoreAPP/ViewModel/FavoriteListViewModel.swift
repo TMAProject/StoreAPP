@@ -11,15 +11,17 @@ class FavoriteListViewModel {
 
     var favoritesList: [ProductViewModel] = []
     let repository = ProductRepository()
-
+    
+    var handleUpdate: (() ->())?
 }
 
 extension FavoriteListViewModel {
 
-    public func getProductViewModel() {
+    public func getFavorites() {
         let array = repository.getFavorites()
         let arrayList = array.compactMap(ProductViewModel.init)
         self.favoritesList = arrayList
+        handleUpdate?()
     }
 
     public var numberOfFavorites: Int {
@@ -30,6 +32,26 @@ extension FavoriteListViewModel {
         if numberOfFavorites >= index {
             let product = favoritesList[index]
             return product
-        } else { return nil}
+        } else { return nil }
+    }
+
+    public func unfavoriteFromCell(at index: Int) -> ProductViewModel? {
+        if numberOfFavorites >= index {
+            let product = favoritesList[index]
+            _ = repository.unfavorite(object: product.product)
+            favoritesList.remove(at: index)
+            handleUpdate?()
+            return product
+        } else { return nil }
+    }
+
+    public func deleteFromCell(at index: Int) -> Product? {
+        if numberOfFavorites >= index {
+            let product = favoritesList[index]
+            _ = repository.delete(object: product.product)
+            favoritesList.remove(at: index)
+            handleUpdate?()
+            return product.product
+        } else { return nil }
     }
 }

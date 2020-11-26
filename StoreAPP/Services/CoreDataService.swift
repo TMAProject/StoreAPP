@@ -8,8 +8,6 @@
 import UIKit
 import CoreData
 
-// swiftlint:disable superfluous_disable_command
-
 extension NSManagedObject {
     static var entityName: String {
          return String(describing: self)
