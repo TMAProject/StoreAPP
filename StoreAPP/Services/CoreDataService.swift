@@ -8,8 +8,6 @@
 import UIKit
 import CoreData
 
-// swiftlint:disable line_length
-
 extension NSManagedObject {
     static var entityName: String {
          return String(describing: self)
