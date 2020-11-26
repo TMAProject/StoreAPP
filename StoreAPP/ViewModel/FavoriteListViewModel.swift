@@ -11,8 +11,8 @@ class FavoriteListViewModel {
 
     var favoritesList: [ProductViewModel] = []
     let repository = ProductRepository()
-    
-    var handleUpdate: (() ->())?
+
+    var handleUpdate: (() -> Void)?
 }
 
 extension FavoriteListViewModel {

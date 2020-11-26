@@ -56,7 +56,7 @@ class ProductRepository: Repository {
     func favorite(object: Product) -> Product? {
         if !object.favorite {
             object.favorite = true
-            service.save()
+            _ = service.save()
             return object
         }
            return nil
@@ -65,7 +65,7 @@ class ProductRepository: Repository {
     func unfavorite(object: Product) -> Product? {
         if object.favorite {
             object.favorite = false
-            service.save()
+            _ = service.save()
             return object
         }
            return nil
