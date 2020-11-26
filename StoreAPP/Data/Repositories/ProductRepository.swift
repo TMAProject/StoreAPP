@@ -22,7 +22,7 @@ class ProductRepository: Repository {
     }
 
     func getFromCategory(from category: Int) -> [Product] {
-        let predicate = NSPredicate(format: "category = %@", category)
+        let predicate = NSPredicate(format: "category = %@", "\(category)")
         guard let products = service.retrieve(predicate: predicate) else { return [] }
         self.products = products
         return products
