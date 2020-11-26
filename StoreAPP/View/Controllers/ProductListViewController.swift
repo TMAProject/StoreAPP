@@ -26,7 +26,10 @@ class ProductListViewController: UITableViewController {
 	}
 
 	@objc private func addButtonAction() {
-		print("AAAAAAAAAAAAAPRINTEI")
+        let createProduct = CreateProductTableViewController()
+
+        let navController = UINavigationController(rootViewController: createProduct)
+        self.navigationController?.present(navController, animated: true, completion: nil)
 	}
 
 	override func viewDidLoad() {
