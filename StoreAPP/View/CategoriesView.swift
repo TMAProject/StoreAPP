@@ -54,6 +54,7 @@ class CategoriesView: UITableViewHeaderFooterView {
 }
 
 extension CategoriesView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Category.allCases.count
     }
