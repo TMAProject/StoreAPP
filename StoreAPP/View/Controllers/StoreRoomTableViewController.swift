@@ -12,6 +12,7 @@ class StoreRoomTableViewController: UITableViewController {
 	init() {
 		super.init(style: .grouped)
 	}
+    var viewModel = FavoriteListViewModel()
 
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
@@ -23,6 +24,13 @@ class StoreRoomTableViewController: UITableViewController {
         self.view.backgroundColor = .systemBackground
 
         self.configureNavigation()
+        viewModel.getFavorites()
+        viewModel.handleUpdate = {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+
 	}
 
     private func configureNavigation() {
@@ -65,7 +73,7 @@ extension StoreRoomTableViewController {
             return 0
         }
 
-		return 7
+        return viewModel.numberOfFavorites
 	}
 
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -74,8 +82,9 @@ extension StoreRoomTableViewController {
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-		cell.textLabel?.text = "Titulo da Label"
-		cell.detailTextLabel?.text = "Detalhes da label"
+        let product = viewModel.productForCell(at: indexPath.row)
+        cell.textLabel?.text = product?.name
+        cell.detailTextLabel?.text = product?.description
 		cell.accessoryType = .disclosureIndicator
 		return cell
 	}
@@ -85,7 +94,9 @@ extension StoreRoomTableViewController {
 	}
 
 	private func handleMarkAsFavorite(indexPath: IndexPath) {
-		print(
+
+        _ = viewModel.unfavoriteFromCell(at: indexPath.row)
+        print(
 			"""
 			\nAtualiza produto e marca como favorito pelo viewModel com o
 			indexpath \(indexPath), depois recarrega a tableView
@@ -94,7 +105,9 @@ extension StoreRoomTableViewController {
 	}
 
 	private func handleMoveToTrash(indexPath: IndexPath) {
-		print(
+
+        _ = viewModel.deleteFromCell(at: indexPath.row)
+        print(
 			"""
 			\nDeleta o produto pelo viewModel com o
 			indexpath \(indexPath), depois recarrega a tableView
@@ -106,7 +119,7 @@ extension StoreRoomTableViewController {
 								indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
 		let swipeFavorite = UIContextualAction(style: .normal,
-											   title: "Favorite") { [weak self] (_, _, completionHandler) in
+											   title: "Unfavorite") { [weak self] (_, _, completionHandler) in
 
 			self?.handleMarkAsFavorite(indexPath: indexPath)
 			completionHandler(true)
@@ -122,7 +135,7 @@ extension StoreRoomTableViewController {
 								indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
 		let swipeTrash = UIContextualAction(style: .destructive,
-											title: "Trash") { [weak self] (_, _, completionHandler) in
+											title: "Delete") { [weak self] (_, _, completionHandler) in
 
 			self?.handleMoveToTrash(indexPath: indexPath)
 			completionHandler(true)
