@@ -9,20 +9,12 @@ import UIKit
 
 class StoreRoomTableViewController: UITableViewController {
 
-	init() {
-		super.init(style: .grouped)
-	}
     var viewModel = FavoriteListViewModel()
-
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
         self.tableView.register(CategoriesView.self, forHeaderFooterViewReuseIdentifier: CategoriesView.reuseIdentifier)
         self.view.backgroundColor = .systemBackground
-
         self.configureNavigation()
         viewModel.getFavorites()
         viewModel.handleUpdate = {
@@ -37,6 +29,11 @@ class StoreRoomTableViewController: UITableViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.title = "Store room"
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.getFavorites()
+    }
+
 }
 
 // MARK: - UITablewViewDelegate + UItableViewDatasource

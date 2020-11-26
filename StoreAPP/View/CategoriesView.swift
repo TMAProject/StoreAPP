@@ -11,7 +11,7 @@ import UIKit
 class CategoriesView: UITableViewHeaderFooterView {
 
     static let reuseIdentifier = "header"
-    
+
     weak var delegate: CategoryDelegate?
 
     let collectionView: UICollectionView = {

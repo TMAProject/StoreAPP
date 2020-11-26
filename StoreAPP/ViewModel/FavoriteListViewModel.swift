@@ -9,7 +9,11 @@ import Foundation
 
 class FavoriteListViewModel {
 
-    var favoritesList: [ProductViewModel] = []
+    var favoritesList: [ProductViewModel] = [] {
+        didSet {
+            handleUpdate?()
+        }
+    }
     let repository = ProductRepository()
 
     var handleUpdate: (() -> Void)?
@@ -40,7 +44,6 @@ extension FavoriteListViewModel {
             let product = favoritesList[index]
             _ = repository.unfavorite(object: product.product)
             favoritesList.remove(at: index)
-            handleUpdate?()
             return product
         } else { return nil }
     }
@@ -50,7 +53,6 @@ extension FavoriteListViewModel {
             let product = favoritesList[index]
             _ = repository.delete(object: product.product)
             favoritesList.remove(at: index)
-            handleUpdate?()
             return product.product
         } else { return nil }
     }

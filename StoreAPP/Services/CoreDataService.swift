@@ -56,6 +56,7 @@ class CoreDataService<T: NSManagedObject> {
     func retrieve(predicate: NSPredicate) -> [T]? {
         let context = persistentStore.viewContext
         let productFetch = NSFetchRequest<T>(entityName: T.entityName)
+        productFetch.sortDescriptors = [NSSortDescriptor(key: Schema.Field.name.rawValue, ascending: true)]
         productFetch.predicate  = predicate
         do {
             let objects = try context.fetch(productFetch)

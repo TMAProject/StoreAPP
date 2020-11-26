@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: scene)
 
-        let storeRoomVC = StoreRoomTableViewController()
+        let storeRoomVC = StoreRoomTableViewController(style: .grouped)
         let navigation = UINavigationController(rootViewController: storeRoomVC)
         window.rootViewController = navigation
 
