@@ -51,6 +51,7 @@ class CategoriesView: UITableViewHeaderFooterView {
             self.collectionView.rightAnchor.constraint(equalTo: self.rightAnchor)
         ])
     }
+
 }
 
 extension CategoriesView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -84,8 +85,8 @@ extension CategoriesView: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         guard let cardCategoryCell = cell, let category = Category(rawValue: indexPath.row) else {
             return CardCategoryCell()
         }
-
         cardCategoryCell.configure(image: category.icon, text: category.title)
         return cardCategoryCell
     }
+
 }

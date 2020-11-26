@@ -36,29 +36,13 @@ class ProductListViewController: UITableViewController {
 		navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add,
 																 target: self,
 																 action: #selector(addButtonAction))
+        viewModel.handleUpdate = {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
 	}
 
-	// MARK: - INITIAL MOCK
-	private func createCoreDataMock(_ amount: Int) {
-		for _ in 0...amount-1 {
-			let newMockProduct = ProductV(name: "Arroize",
-										  category: Int16(Category.dry.rawValue),
-										  quatity: 4,
-										  idealQuantity: 5,
-										  favorite: true)
-
-			_ = viewModel.repository.add(object: newMockProduct)
-		}
-	}
-
-	private func deleteCoreDataMock() {
-		guard viewModel.numberOfProducts > 0 else { return }
-
-		for index in 0...viewModel.numberOfProducts-1 {
-			_ = viewModel.deleteFromCell(at: index)
-		}
-	}
-	// MARK: - FINAL MOCK
 }
 
 // MARK: - UITablewViewDelegate + UItableViewDatasource
@@ -74,7 +58,7 @@ extension ProductListViewController {
 
 		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
 		cell.textLabel?.text = product.name
-		cell.detailTextLabel?.text = "Qtd: \(product.quantity)/\(product.idealQuantity), Ultima Compra: $1,50 Und"
+        cell.detailTextLabel?.text = product.description
 		cell.accessoryType = .disclosureIndicator
 		return cell
 	}
@@ -84,7 +68,8 @@ extension ProductListViewController {
 	}
 
 	private func handleMarkAsFavorite(indexPath: IndexPath) {
-		print(
+        _ = viewModel.favoriteFromCell(at: indexPath.row)
+        print(
 			"""
 			\nAtualiza produto e marca como favorito pelo viewModel com o
 			indexpath \(indexPath), depois recarrega a tableView
@@ -94,9 +79,7 @@ extension ProductListViewController {
 
 	private func handleMoveToTrash(indexPath: IndexPath) {
 		_ = viewModel.deleteFromCell(at: indexPath.row)
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { // gambiarra aqui
-			self.tableView.reloadData()
-		}
+
 	}
 
 	override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt

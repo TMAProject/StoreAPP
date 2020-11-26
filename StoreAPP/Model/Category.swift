@@ -78,4 +78,13 @@ enum Category: Int, CaseIterable {
             return "Outros"
         }
     }
+    
+    var controller: UITableViewController{
+        switch self {
+        case .drinks:
+            return ProductListViewController(viewModel: ProductListViewModel(category: .drinks))
+        default:
+            return ProductListViewController(viewModel: ProductListViewModel(category: .dry))
+        }
+    }
 }
