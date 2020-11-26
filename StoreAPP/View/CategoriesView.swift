@@ -11,6 +11,8 @@ import UIKit
 class CategoriesView: UITableViewHeaderFooterView {
 
     static let reuseIdentifier = "header"
+    
+    weak var delegate: CategoryDelegate?
 
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -54,6 +56,11 @@ class CategoriesView: UITableViewHeaderFooterView {
 }
 
 extension CategoriesView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let category = Category.allCases[indexPath.row]
+        self.delegate?.didSelectCategory(category: category)
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Category.allCases.count

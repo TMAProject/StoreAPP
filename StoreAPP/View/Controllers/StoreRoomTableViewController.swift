@@ -50,6 +50,8 @@ extension StoreRoomTableViewController {
         if section == 0 {
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: CategoriesView.reuseIdentifier) as? CategoriesView
             guard let headerView = view else { return UIView() }
+
+            headerView.delegate = self
             return headerView
         }
 
@@ -146,4 +148,16 @@ extension StoreRoomTableViewController {
 
 		return configuration
 	}
+}
+
+// TODO - remover esse protocolo desse arquivo
+protocol CategoryDelegate: class {
+    func didSelectCategory(category: Category)
+}
+
+extension StoreRoomTableViewController: CategoryDelegate {
+    func didSelectCategory(category: Category) {
+        let controller = ProductListViewController(viewModel: ProductListViewModel(category: category))
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
