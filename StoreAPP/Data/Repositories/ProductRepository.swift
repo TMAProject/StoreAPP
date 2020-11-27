@@ -30,11 +30,11 @@ class ProductRepository: Repository {
 
     func add(object: ProductV) -> Product? {
         let product = service.new()
-        product.name = object.name
-        product.category = object.category
-        product.idealQuantity = object.idealQuantity
-        product.quantity = object.quatity
-        product.favorite = object.favorite
+        product?.name = object.name
+        product?.category = object.category
+        product?.idealQuantity = object.idealQuantity
+        product?.quantity = object.quatity
+        product?.favorite = object.favorite
         if service.save() { return product }
         return nil
     }

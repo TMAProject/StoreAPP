@@ -23,9 +23,9 @@ class CoreDataService<T: NSManagedObject> {
         return persistentContainer
     }()
 
-    func new() -> T {
+    func new() -> T? {
         guard let entity = NSEntityDescription.entity(forEntityName: T.entityName, in: persistentStore.viewContext)
-        else { fatalError("Parabéns!") }
+        else { return nil }
         return T(entity: entity, insertInto: persistentStore.viewContext)
     }
 
