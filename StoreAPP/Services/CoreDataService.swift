@@ -85,7 +85,7 @@ extension NSManagedObjectContext {
         DispatchQueue.main.async {
             guard let window = UIApplication.shared.delegate?.window,
                 let viewController = window?.rootViewController else { return }
-            let message = "Failed to save the context."
+            let message = "Failed to save the contex \(info)"
             // Append message to existing alert if present
             if let currentAlert = viewController.presentedViewController as? UIAlertController {
                 currentAlert.message = (currentAlert.message ?? "") + "\n\n\(message)"

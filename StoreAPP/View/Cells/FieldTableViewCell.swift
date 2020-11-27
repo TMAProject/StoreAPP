@@ -15,7 +15,6 @@ class FieldTableViewCell: UITableViewCell {
         let textField = UITextField()
         textField.backgroundColor = .systemBackground
         textField.clearButtonMode = .always
-
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
