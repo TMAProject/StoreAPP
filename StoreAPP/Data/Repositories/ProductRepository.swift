@@ -9,7 +9,7 @@ import Foundation
 
 class ProductRepository: Repository {
 
-    typealias ObjectV = ProductV
+    typealias ObjectDTO = ProductDTO
     typealias Object = Product
 
     let service = CoreDataService<Product>()
@@ -22,13 +22,13 @@ class ProductRepository: Repository {
     }
 
     func getFromCategory(from category: Int) -> [Product] {
-        let predicate = NSPredicate(format: "category = %@", "\(category)")
-        guard let products = service.retrieve(predicate: predicate) else { return [] }
+        let predicateEnum = ProductPredicate.getFromCategory(category: category)
+        guard let products = service.retrieve(predicate: predicateEnum.predicate) else { return [] }
         self.products = products
         return products
     }
 
-    func add(object: ProductV) -> Product? {
+    func add(object: ProductDTO) -> Product? {
         let product = service.new()
         product?.name = object.name
         product?.category = object.category
@@ -39,15 +39,14 @@ class ProductRepository: Repository {
         return nil
     }
 
-    func delete(object: Product) -> Bool {
-        service.delete(object: object, shouldSave: true)
-        return true
+    func delete(object: Product) -> Product? {
+        guard let product = service.delete(object: object) else { return nil }
+        return product
     }
 
     func get(object: Product) -> Product? {
-        let productName = "b"
-        let predicate = NSPredicate(format: "id == %@", productName)
-        if let product = service.retrieve(predicate: predicate) {
+        let predicateEnum = ProductPredicate.getFromId(identifier: object.name)
+        if let product = service.retrieve(predicate: predicateEnum.predicate) {
             return product.first
         }
         return nil
@@ -72,8 +71,8 @@ class ProductRepository: Repository {
     }
 
     func getFavorites() -> [Product] {
-        let predicate = NSPredicate(format: "favorite = %@", NSNumber(value: true))
-        guard let products = service.retrieve(predicate: predicate) else { return [] }
+        let predicateEnum = ProductPredicate.getFavorite
+        guard let products = service.retrieve(predicate: predicateEnum.predicate) else { return [] }
         return products
     }
 }

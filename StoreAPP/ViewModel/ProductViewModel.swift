@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProductV {
+struct ProductDTO {
     var name: String
     var category: Int16
     var quatity: Int32

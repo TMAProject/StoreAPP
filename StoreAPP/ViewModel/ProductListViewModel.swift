@@ -9,7 +9,11 @@ import Foundation
 
 class ProductListViewModel {
 
-    var productList: [ProductViewModel] = []
+    var productList: [ProductViewModel] = [] {
+        didSet {
+            handleUpdate?()
+        }
+    }
     let repository = ProductRepository()
     let category: Category
 
@@ -44,7 +48,6 @@ extension ProductListViewModel {
             let product = productList[index]
             _ = repository.delete(object: product.product)
             productList.remove(at: index)
-            handleUpdate?()
             return product.product
         } else { return nil }
     }
@@ -53,9 +56,8 @@ extension ProductListViewModel {
         if numberOfProducts >= index {
             let product = productList[index]
             _ = repository.favorite(object: product.product)
-            handleUpdate?()
             return product
-        } else { return nil}
+        } else { return nil }
     }
 
 }

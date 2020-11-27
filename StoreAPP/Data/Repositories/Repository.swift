@@ -8,13 +8,13 @@
 import Foundation
 
 protocol Repository {
-    associatedtype ObjectV
+    associatedtype ObjectDTO
     associatedtype Object
 
     func getAll() -> [Object]
     func get(object: Object) -> Object?
-    func add(object: ObjectV) -> Object?
-    func delete(object: Object) -> Bool
+    func add(object: ObjectDTO) -> Object?
+    func delete(object: Object) -> Object?
 }
 
 extension Repository {

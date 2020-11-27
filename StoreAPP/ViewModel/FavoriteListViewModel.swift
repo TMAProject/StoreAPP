@@ -25,7 +25,6 @@ extension FavoriteListViewModel {
         let array = repository.getFavorites()
         let arrayList = array.compactMap(ProductViewModel.init)
         self.favoritesList = arrayList
-        handleUpdate?()
     }
 
     public var numberOfFavorites: Int {

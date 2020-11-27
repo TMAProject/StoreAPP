@@ -18,7 +18,7 @@ class RepositoryTest: XCTestCase {
 
     func test_add_true() {
         // given
-        let product = ProductV(name: "b", category: 0, quatity: 0, idealQuantity: 0, favorite: true)
+        let product = ProductDTO(name: "b", category: 0, quatity: 0, idealQuantity: 0, favorite: true)
 
         // when
         let savedProduct = repository.add(object: product)

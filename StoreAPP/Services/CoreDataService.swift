@@ -10,8 +10,8 @@ import CoreData
 
 extension NSManagedObject {
     static var entityName: String {
-         return String(describing: self)
-     }
+        return String(describing: self)
+    }
 }
 
 class CoreDataService<T: NSManagedObject> {
@@ -66,14 +66,16 @@ class CoreDataService<T: NSManagedObject> {
             return nil
         }
     }
-    // Adding should save in case you want to delete but not save the context
-    func delete(object: T, shouldSave: Bool) {
+
+    func delete(object: T) -> T? {
         let context = persistentStore.viewContext
-        context.perform {
-            context.delete(object)
-            if shouldSave {
-                context.save(with: "deleting product")
-            }
+        context.delete(object)
+        do {
+            try context.save()
+            return object
+        } catch let error as NSError {
+            context.handleSavingError(error, info: "deleting product")
+            return nil
         }
     }
 }
@@ -81,10 +83,9 @@ class CoreDataService<T: NSManagedObject> {
 extension NSManagedObjectContext {
     func handleSavingError(_ error: Error, info: String) {
         print("Saving error: \(error) when \(info)")
-
         DispatchQueue.main.async {
             guard let window = UIApplication.shared.delegate?.window,
-                let viewController = window?.rootViewController else { return }
+                  let viewController = window?.rootViewController else { return }
             let message = "Failed to save the contex \(info)"
             // Append message to existing alert if present
             if let currentAlert = viewController.presentedViewController as? UIAlertController {
@@ -95,14 +96,6 @@ extension NSManagedObjectContext {
             let alert = UIAlertController(title: "Core Data Saving Error", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             viewController.present(alert, animated: true)
-        }
-    }
-
-    func save(with information: String) {
-        do {
-            try save()
-        } catch {
-            handleSavingError(error, info: information)
         }
     }
 
