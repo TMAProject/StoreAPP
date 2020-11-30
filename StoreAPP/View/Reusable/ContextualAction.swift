@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SwipeActionDelegate: class {
-    func didPerform(action: SwipeAction)
+    func didPerform(action: SwipeAction, index: Int)
 }
 
 protocol SwipeAction {
@@ -26,16 +26,18 @@ class ContextualAction<Action: SwipeAction> {
 
     private var actions: [Action]!
     private var contextuals: [UIContextualAction] = []
+    private let indexRow: Int
     weak var delegate: SwipeActionDelegate?
 
-    init(delegate: SwipeActionDelegate, actions: [Action]) {
+    init(delegate: SwipeActionDelegate, actions: [Action], index: Int) {
         self.delegate = delegate
+        self.indexRow = index
         self.addContextuals(actions: actions)
     }
 
     private func addContextuals(actions: [Action]) {
         for action in actions {
-            self.handler = { _, _, _ in self.delegate?.didPerform(action: action) }
+            self.handler = { _, _, _ in self.delegate?.didPerform(action: action, index: self.indexRow) }
             let contextualAction = UIContextualAction(style: action.style, title: action.title, handler: handler!)
             contextuals.append(contextualAction)
         }

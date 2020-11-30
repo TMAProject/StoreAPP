@@ -64,11 +64,11 @@ extension ProductListViewModel {
 
 extension ProductListViewModel: SwipeActionDelegate {
 
-    func didPerform(action: SwipeAction) {
+    func didPerform(action: SwipeAction, index: Int) {
         guard let action = action as? ProductListAction else { return }
         switch action {
-        case .delete: print("delete")
-        case .favorite: print("favorite.")
+        case .delete: _ = deleteFromCell(at: index)
+        case .favorite: _ = favoriteFromCell(at: index)
         }
     }
 }

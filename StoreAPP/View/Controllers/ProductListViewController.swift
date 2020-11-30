@@ -87,13 +87,13 @@ extension ProductListViewController {
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt
                                 indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let configuration = ContextualAction<ProductListAction>(delegate: viewModel, actions: [.favorite])
+        let configuration = ContextualAction<ProductListAction>(delegate: viewModel, actions: [.favorite], index: indexPath.row)
         return configuration.setup()
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
                                 indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let configuration = ContextualAction<ProductListAction>(delegate: viewModel, actions: [.delete])
+        let configuration = ContextualAction<ProductListAction>(delegate: viewModel, actions: [.delete], index: indexPath.row)
         return configuration.setup()
     }
 }
