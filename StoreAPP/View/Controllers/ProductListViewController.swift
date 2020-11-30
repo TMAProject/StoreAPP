@@ -82,18 +82,22 @@ extension ProductListViewController {
 
     private func handleMoveToTrash(indexPath: IndexPath) {
         _ = viewModel.deleteFromCell(at: indexPath.row)
-
     }
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt
                                 indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let configuration = ContextualAction<ProductListAction>(delegate: viewModel, actions: [.favorite], index: indexPath.row)
+        let configuration: ContextualAction<ProductListAction>!
+        if viewModel.productList[indexPath.row].favorite {
+            configuration = ContextualAction<ProductListAction>(viewModel, actions: [.unfavorite], index: indexPath.row)
+        } else {
+            configuration = ContextualAction<ProductListAction>(viewModel, actions: [.favorite], index: indexPath.row)
+        }
         return configuration.setup()
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
                                 indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let configuration = ContextualAction<ProductListAction>(delegate: viewModel, actions: [.delete], index: indexPath.row)
+        let configuration = ContextualAction<ProductListAction>(viewModel, actions: [.delete], index: indexPath.row)
         return configuration.setup()
     }
 }

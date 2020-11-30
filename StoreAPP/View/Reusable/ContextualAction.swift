@@ -29,7 +29,7 @@ class ContextualAction<Action: SwipeAction> {
     private let indexRow: Int
     weak var delegate: SwipeActionDelegate?
 
-    init(delegate: SwipeActionDelegate, actions: [Action], index: Int) {
+    init(_ delegate: SwipeActionDelegate, actions: [Action], index: Int) {
         self.delegate = delegate
         self.indexRow = index
         self.addContextuals(actions: actions)
@@ -37,8 +37,12 @@ class ContextualAction<Action: SwipeAction> {
 
     private func addContextuals(actions: [Action]) {
         for action in actions {
-            self.handler = { _, _, _ in self.delegate?.didPerform(action: action, index: self.indexRow) }
+            self.handler = { _, _, completion in
+                self.delegate?.didPerform(action: action, index: self.indexRow)
+                completion(true)
+            }
             let contextualAction = UIContextualAction(style: action.style, title: action.title, handler: handler!)
+            contextualAction.backgroundColor = action.color
             contextuals.append(contextualAction)
         }
     }
