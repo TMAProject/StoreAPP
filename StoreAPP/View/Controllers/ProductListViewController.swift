@@ -77,43 +77,23 @@ extension ProductListViewController {
 			\nAtualiza produto e marca como favorito pelo viewModel com o
 			indexpath \(indexPath), depois recarrega a tableView
 			"""
-		)
-	}
+        )
+    }
 
-	private func handleMoveToTrash(indexPath: IndexPath) {
-		_ = viewModel.deleteFromCell(at: indexPath.row)
+    private func handleMoveToTrash(indexPath: IndexPath) {
+        _ = viewModel.deleteFromCell(at: indexPath.row)
 
-	}
+    }
 
-	override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt
-								indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt
+                                indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let configuration = ContextualAction<ProductListAction>(delegate: viewModel, actions: [.favorite])
+        return configuration.setup()
+    }
 
-		let swipeFavorite = UIContextualAction(style: .normal,
-											   title: "Favorite") { [weak self] (_, _, completionHandler) in
-
-			self?.handleMarkAsFavorite(indexPath: indexPath)
-			completionHandler(true)
-		}
-
-		swipeFavorite.backgroundColor = .systemGreen
-		let configuration = UISwipeActionsConfiguration(actions: [swipeFavorite])
-
-		return configuration
-	}
-
-	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
-								indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
-		let swipeTrash = UIContextualAction(style: .destructive,
-											title: "Trash") { [weak self] (_, _, completionHandler) in
-
-			self?.handleMoveToTrash(indexPath: indexPath)
-			completionHandler(true)
-		}
-
-		swipeTrash.backgroundColor = .systemRed
-		let configuration = UISwipeActionsConfiguration(actions: [swipeTrash])
-
-		return configuration
-	}
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
+                                indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let configuration = ContextualAction<ProductListAction>(delegate: viewModel, actions: [.delete])
+        return configuration.setup()
+    }
 }

@@ -61,3 +61,14 @@ extension ProductListViewModel {
     }
 
 }
+
+extension ProductListViewModel: SwipeActionDelegate {
+
+    func didPerform(action: SwipeAction) {
+        guard let action = action as? ProductListAction else { return }
+        switch action {
+        case .delete: print("delete")
+        case .favorite: print("favorite.")
+        }
+    }
+}
