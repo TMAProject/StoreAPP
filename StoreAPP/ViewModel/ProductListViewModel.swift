@@ -37,27 +37,30 @@ extension ProductListViewModel {
     }
 
     public func productForCell(at index: Int) -> ProductViewModel? {
-        if numberOfProducts >= index {
+        if numberOfProducts > index {
             let product = productList[index]
             return product
-        } else { return nil }
+        }
+        return nil
     }
 
-    public func deleteFromCell(at index: Int) -> Product? {
-        if numberOfProducts >= index {
+    public func deleteFromCell(at index: Int) -> ProductViewModel? {
+        if numberOfProducts > index {
             let product = productList[index]
             _ = repository.delete(object: product.product)
             productList.remove(at: index)
-            return product.product
-        } else { return nil }
+            return product
+        }
+        return nil
     }
 
     public func favoriteFromCell(at index: Int) -> ProductViewModel? {
-        if numberOfProducts >= index {
+        if numberOfProducts > index {
             let product = productList[index]
             _ = repository.favorite(object: product.product)
             return product
-        } else { return nil }
+        }
+        return nil
     }
 
 }
