@@ -13,6 +13,7 @@
 		9F0DA5F3256BFE8F00294827 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0DA5F2256BFE8F00294827 /* Repository.swift */; };
 		9F27482625750E8A00D07FA1 /* ProductListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F27482525750E8A00D07FA1 /* ProductListAction.swift */; };
 		9F27482B25750F3200D07FA1 /* ContextualAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F27482A25750F3200D07FA1 /* ContextualAction.swift */; };
+		9F27485C2576632500D07FA1 /* CreateProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F27485B2576632500D07FA1 /* CreateProductViewModel.swift */; };
 		9FD7C61D256D45E000E25C77 /* RepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD7C61C256D45E000E25C77 /* RepositoryTest.swift */; };
 		A2373235256E9B5F00D08892 /* CreateProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2373234256E9B5F00D08892 /* CreateProductTableViewController.swift */; };
 		A237323A256E9D0D00D08892 /* FieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2373239256E9D0D00D08892 /* FieldTableViewCell.swift */; };
@@ -62,6 +63,7 @@
 		9F0DA5F2256BFE8F00294827 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		9F27482525750E8A00D07FA1 /* ProductListAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListAction.swift; sourceTree = "<group>"; };
 		9F27482A25750F3200D07FA1 /* ContextualAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextualAction.swift; sourceTree = "<group>"; };
+		9F27485B2576632500D07FA1 /* CreateProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductViewModel.swift; sourceTree = "<group>"; };
 		9FD7C61C256D45E000E25C77 /* RepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTest.swift; sourceTree = "<group>"; };
 		A2373234256E9B5F00D08892 /* CreateProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductTableViewController.swift; sourceTree = "<group>"; };
 		A2373239256E9D0D00D08892 /* FieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTableViewCell.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				9F0DA5E4256BE96000294827 /* ViewModel.swift */,
 				EC3077A1256D367100FB4274 /* ProductListViewModel.swift */,
 				EC3077A6256D3B3500FB4274 /* FavoriteListViewModel.swift */,
+				9F27485B2576632500D07FA1 /* CreateProductViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F27485C2576632500D07FA1 /* CreateProductViewModel.swift in Sources */,
 				ECC8591B257126AA002BDB19 /* PredicateEnum.swift in Sources */,
 				A2373247256EA7C900D08892 /* CreateProductForm.swift in Sources */,
 				ECBE1A4B2566C15A00421F29 /* ProductViewModel.swift in Sources */,

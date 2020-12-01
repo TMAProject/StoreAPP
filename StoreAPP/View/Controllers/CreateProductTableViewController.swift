@@ -10,11 +10,11 @@ import UIKit
 
 class CreateProductTableViewController: UITableViewController {
 
-    private let formFields: CreateProductForm = CreateProductForm()
+    private let viewModel = CreateProductViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.consigurateNavigationBar()
+        self.configureNavigationBar()
 
         self.tableView.register(FieldTableViewCell.self, forCellReuseIdentifier: FieldTableViewCell.reuseIdentifier)
         self.tableView.register(CustomSectionView.self, forHeaderFooterViewReuseIdentifier: CustomSectionView.reuseIdentifier)
@@ -22,57 +22,42 @@ class CreateProductTableViewController: UITableViewController {
         self.tableView.allowsSelection = false
     }
 
-    private func consigurateNavigationBar() {
+    private func configureNavigationBar() {
         self.title = "New product"
         self.isModalInPresentation = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: viewModel, action: #selector(viewModel.save))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: viewModel, action: #selector(viewModel.cancel))
     }
 
-    @objc func cancel() {
-        self.dismiss(animated: true, completion: nil)
-    }
-
-    @objc func save() {
-        self.dismiss(animated: true, completion: nil)
-    }
 }
 
 extension CreateProductTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return formFields.numberOfsections
+        return viewModel.numberOfSections
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomSectionView.reuseIdentifier) as? CustomSectionView
             guard let headerView = view else { return UIView() }
-            headerView.configure(with: formFields.sections[section])
-
+            headerView.configure(with: viewModel.getSectionName(at: section))
             headerView.contentView.backgroundColor = .systemBackground
             return headerView
         }
-
         let titleView = UITableViewHeaderFooterView()
         titleView.contentView.backgroundColor = .systemBackground
-
         return titleView
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionName = formFields.sections[section]
-        return formFields.fields[sectionName]?.count ?? 0
+        return viewModel.numberOfRows(at: section)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifier, for: indexPath) as? FieldTableViewCell
-
-        let sectionName = formFields.sections[indexPath.section]
-        let fieldName = formFields.fields[sectionName]?[indexPath.row]
-
-        guard let fieldCell = cell, let label = fieldName else { return FieldTableViewCell() }
-
-        fieldCell.configure(label: label)
-        return fieldCell
+        if let fieldName = viewModel.getFieldBySectionName(section: indexPath.section, at: indexPath.row) {
+            cell?.configure(label: fieldName)
+        }
+        return cell ?? UITableViewCell()
     }
 }
