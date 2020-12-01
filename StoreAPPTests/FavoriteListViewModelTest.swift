@@ -8,7 +8,7 @@
 import XCTest
 import CoreData
 @testable import StoreAPP
-// swiftlint:disable line_length force_cast
+// swiftlint:disable line_length
 
 class FavoriteListViewModelTest: XCTestCase {
 
