@@ -15,7 +15,7 @@ struct ProductDTO {
     var favorite: Bool
 }
 
-struct ProductViewModel: ViewModel {
+struct ProductViewModel: ViewModel, Equatable {
 
     let product: Product
 
