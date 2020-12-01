@@ -21,7 +21,7 @@ class ProductListViewController: UITableViewController {
 	}
 
 	@objc private func addButtonAction() {
-        let createProduct = CreateProductTableViewController()
+        let createProduct = CreateProductTableViewController(viewModel: CreateProductViewModel(category: viewModel.category))
 
         let navController = UINavigationController(rootViewController: createProduct)
         self.navigationController?.present(navController, animated: true, completion: nil)

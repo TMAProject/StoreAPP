@@ -10,11 +10,24 @@ import UIKit
 
 class CreateProductTableViewController: UITableViewController {
 
-    private let viewModel = CreateProductViewModel()
-
+    private var viewModel: CreateProductViewModel
+    
+    init(viewModel: CreateProductViewModel) {
+        self.viewModel = viewModel
+        super.init(style: .grouped)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureNavigationBar()
+
+        viewModel.handleDismiss = {
+            self.dismiss(animated: true, completion: nil)
+        }
 
         self.tableView.register(FieldTableViewCell.self, forCellReuseIdentifier: FieldTableViewCell.reuseIdentifier)
         self.tableView.register(CustomSectionView.self, forHeaderFooterViewReuseIdentifier: CustomSectionView.reuseIdentifier)
@@ -57,6 +70,7 @@ extension CreateProductTableViewController {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifier, for: indexPath) as? FieldTableViewCell
         if let fieldName = viewModel.getFieldBySectionName(section: indexPath.section, at: indexPath.row) {
             cell?.configure(label: fieldName)
+            viewModel.bindCell(cell: cell)
         }
         return cell ?? UITableViewCell()
     }
