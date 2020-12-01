@@ -35,6 +35,7 @@ class ProductListViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationItem.title = viewModel.category.title
+        self.view.backgroundColor = .systemBackground
 		_ = viewModel.getProductsViewModel()
 		navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add,
 																 target: self,
