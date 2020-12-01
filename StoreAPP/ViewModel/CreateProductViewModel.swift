@@ -12,7 +12,7 @@ class CreateProductViewModel: ViewModel {
     private let formFields = CreateProductForm()
     private let repository = ProductRepository()
     private var product: ProductDTO?
-    
+
     public var handleDismiss: (() -> Void)?
     public var cells: [FieldTableViewCell] = []
 
@@ -58,7 +58,7 @@ class CreateProductViewModel: ViewModel {
         var name: String = ""
         var quantity: Int32 = 0
         var idealQuantity: Int32 = 0
-        
+
         for cell in cells {
             switch cell.label.text {
             case "Titulo":

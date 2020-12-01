@@ -11,22 +11,25 @@ import UIKit
 class CreateProductTableViewController: UITableViewController {
 
     private var viewModel: CreateProductViewModel
-    
+    // MARK: TODO - Temporariamente enquanto não temos coordinators
+    public var callback: (() -> Void)?
+
     init(viewModel: CreateProductViewModel) {
         self.viewModel = viewModel
         super.init(style: .grouped)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureNavigationBar()
 
         viewModel.handleDismiss = {
             self.dismiss(animated: true, completion: nil)
+            self.callback?()
         }
 
         self.tableView.register(FieldTableViewCell.self, forCellReuseIdentifier: FieldTableViewCell.reuseIdentifier)
