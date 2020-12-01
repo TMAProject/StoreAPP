@@ -16,11 +16,6 @@ class ProductListViewController: UITableViewController {
 		super.init(style: .grouped)
 	}
 
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		//		self.tableView.reloadData()
-	}
-
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -69,20 +64,6 @@ extension ProductListViewController {
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 75
 	}
-
-	private func handleMarkAsFavorite(indexPath: IndexPath) {
-        _ = viewModel.favoriteFromCell(at: indexPath.row)
-        print(
-			"""
-			\nAtualiza produto e marca como favorito pelo viewModel com o
-			indexpath \(indexPath), depois recarrega a tableView
-			"""
-        )
-    }
-
-    private func handleMoveToTrash(indexPath: IndexPath) {
-        _ = viewModel.deleteFromCell(at: indexPath.row)
-    }
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt
                                 indexPath: IndexPath) -> UISwipeActionsConfiguration? {
