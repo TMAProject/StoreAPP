@@ -19,6 +19,7 @@
 		A2F91EE6256FD14600A7252F /* CustomSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F91EE5256FD14600A7252F /* CustomSectionView.swift */; };
 		EC3077A2256D367100FB4274 /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3077A1256D367100FB4274 /* ProductListViewModel.swift */; };
 		EC3077A7256D3B3500FB4274 /* FavoriteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3077A6256D3B3500FB4274 /* FavoriteListViewModel.swift */; };
+		ECBB891B25750E41004EE217 /* CoreDataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBB891A25750E41004EE217 /* CoreDataServiceTest.swift */; };
 		ECBE19F42566BE7600421F29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE19F32566BE7600421F29 /* AppDelegate.swift */; };
 		ECBE19F62566BE7600421F29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE19F52566BE7600421F29 /* SceneDelegate.swift */; };
 		ECBE19FE2566BE7600421F29 /* StoreAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ECBE19FC2566BE7600421F29 /* StoreAPP.xcdatamodeld */; };
@@ -66,6 +67,7 @@
 		A2F91EE5256FD14600A7252F /* CustomSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSectionView.swift; sourceTree = "<group>"; };
 		EC3077A1256D367100FB4274 /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
 		EC3077A6256D3B3500FB4274 /* FavoriteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModel.swift; sourceTree = "<group>"; };
+		ECBB891A25750E41004EE217 /* CoreDataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceTest.swift; sourceTree = "<group>"; };
 		ECBE19F02566BE7600421F29 /* StoreAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECBE19F32566BE7600421F29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECBE19F52566BE7600421F29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				ECBE1A0D2566BE7900421F29 /* StoreAPPTests.swift */,
 				ECBE1A0F2566BE7900421F29 /* Info.plist */,
 				9FD7C61C256D45E000E25C77 /* RepositoryTest.swift */,
+				ECBB891A25750E41004EE217 /* CoreDataServiceTest.swift */,
 			);
 			path = StoreAPPTests;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECBB891B25750E41004EE217 /* CoreDataServiceTest.swift in Sources */,
 				ECBE1A0E2566BE7900421F29 /* StoreAPPTests.swift in Sources */,
 				9FD7C61D256D45E000E25C77 /* RepositoryTest.swift in Sources */,
 			);
