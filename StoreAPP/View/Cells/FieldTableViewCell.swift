@@ -65,6 +65,9 @@ class FieldTableViewCell: UITableViewCell {
     func configure(with label: String) {
         self.identifier = ProductFields(rawValue: label)
         self.textField.placeholder = label
+        if let identifier = self.identifier {
+            self.textField.keyboardType = identifier.keyboardType
+        }
         self.label.text = label
     }
 
