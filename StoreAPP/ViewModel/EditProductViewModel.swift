@@ -73,7 +73,7 @@ protocol FieldDelegate: class {
 extension EditProductViewModel: FieldDelegate {
     func updateTextField(text: String, identifier: ProductFields) {
         switch identifier {
-        case .description:
+        case .name:
             self.productDTO.name = text
         case .quantity:
             self.productDTO.quatity = Int32(text) ?? 0

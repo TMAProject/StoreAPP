@@ -36,10 +36,14 @@ class EditProductTableViewController: UITableViewController {
     }
 
     private func consigurateNavigationBar() {
-        self.title = viewModel.product.name
-        
+        self.title = "Editar Produto"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
                                                                  target: viewModel, action: #selector(viewModel.save))
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = .never
     }
 }
 
