@@ -63,4 +63,24 @@ extension ProductListViewModel {
         return nil
     }
 
+    public func unfavoriteFromCell(at index: Int) -> ProductViewModel? {
+        if numberOfProducts >= index {
+            let product = productList[index]
+            _ = repository.unfavorite(object: product.product)
+            return product
+        } else { return nil }
+    }
+
+}
+
+extension ProductListViewModel: SwipeActionDelegate {
+
+    func didPerform(action: SwipeAction, index: Int) {
+        guard let action = action as? ProductListAction else { return }
+        switch action {
+        case .delete: _ = deleteFromCell(at: index)
+        case .favorite: _ = favoriteFromCell(at: index)
+        case .unfavorite: _ = unfavoriteFromCell(at: index)
+        }
+    }
 }

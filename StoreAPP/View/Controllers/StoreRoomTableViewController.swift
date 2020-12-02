@@ -10,6 +10,7 @@ import UIKit
 class StoreRoomTableViewController: UITableViewController {
 
     var viewModel = FavoriteListViewModel()
+    let repository = ProductRepository()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,7 +32,9 @@ class StoreRoomTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.getFavorites()
+        navigationItem.largeTitleDisplayMode = .always
     }
 
 }
@@ -92,59 +95,22 @@ extension StoreRoomTableViewController {
 		return 75
 	}
 
-	private func handleMarkAsFavorite(indexPath: IndexPath) {
-
-        _ = viewModel.unfavoriteFromCell(at: indexPath.row)
-        print(
-			"""
-			\nAtualiza produto e marca como favorito pelo viewModel com o
-			indexpath \(indexPath), depois recarrega a tableView
-			"""
-		)
-	}
-
-	private func handleMoveToTrash(indexPath: IndexPath) {
-
-        _ = viewModel.deleteFromCell(at: indexPath.row)
-        print(
-			"""
-			\nDeleta o produto pelo viewModel com o
-			indexpath \(indexPath), depois recarrega a tableView
-			"""
-		)
-	}
-
 	override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt
 								indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
-		let swipeFavorite = UIContextualAction(style: .normal,
-											   title: "Unfavorite") { [weak self] (_, _, completionHandler) in
-
-			self?.handleMarkAsFavorite(indexPath: indexPath)
-			completionHandler(true)
-		}
-
-		swipeFavorite.backgroundColor = .systemGreen
-		let configuration = UISwipeActionsConfiguration(actions: [swipeFavorite])
-
-		return configuration
+        let configuration = ContextualAction<ProductListAction>(viewModel, actions: [.unfavorite], index: indexPath.row)
+        return configuration.setup()
 	}
 
 	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
 								indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
-		let swipeTrash = UIContextualAction(style: .destructive,
-											title: "Delete") { [weak self] (_, _, completionHandler) in
-
-			self?.handleMoveToTrash(indexPath: indexPath)
-			completionHandler(true)
-		}
-
-		swipeTrash.backgroundColor = .systemRed
-		let configuration = UISwipeActionsConfiguration(actions: [swipeTrash])
-
-		return configuration
+        let configuration = ContextualAction<ProductListAction>(viewModel, actions: [.delete], index: indexPath.row)
+        return configuration.setup()
 	}
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let  product = viewModel.productForCell(at: indexPath.row)?.product else { return }
+        navigationController?.pushViewController(EditProductTableViewController(product: product), animated: true)
+    }
 }
 
 // TODO - remover esse protocolo desse arquivo
