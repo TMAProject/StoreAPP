@@ -61,7 +61,7 @@ class CreateProductViewModel: ViewModel {
 
         for cell in cells {
             switch cell.label.text {
-            case "Titulo":
+            case "Nome":
                 name = cell.textField.text ?? ""
             case "Quantidade":
                 quantity = Int32(cell.textField.text!) ?? 0
