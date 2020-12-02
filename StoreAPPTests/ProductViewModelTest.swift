@@ -11,6 +11,9 @@ import CoreData
 
 class ProductViewModelTest: XCTestCase {
 
+    var productMock: Product?
+    var sut: ProductViewModel?
+
     let persistentStore: NSPersistentContainer = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let container = appDelegate?.persistentContainer
@@ -31,23 +34,41 @@ class ProductViewModelTest: XCTestCase {
         return product
     }
 
-    func testInitWithProduct_createsProductViewModel() {
-        let product: Product = createMockProduct()
-
-        XCTAssertNotNil(ProductViewModel(product))
+    override func setUp() {
+        self.productMock = createMockProduct()
+        self.sut = ProductViewModel(self.productMock!)
     }
 
-    func testGetCategory_productViewModelCategoryEqualProductCategorySended() {
-        let product: Product = createMockProduct()
-        let productViewModel = ProductViewModel(product)
-
-        XCTAssertEqual(productViewModel.category, product.category)
+    override func tearDown() {
+        self.productMock = nil
+        self.sut = nil
     }
 
-    func testGetFavorite_productViewModelFavoriteEqualProductFavoriteSended() {
-        let product: Product = createMockProduct()
-        let productViewModel = ProductViewModel(product)
+    func test_init_ProductViewModel() {
+        XCTAssertNotNil(ProductViewModel(self.productMock!))
+    }
 
-        XCTAssertEqual(productViewModel.favorite, product.favorite)
+    func test_getName_productViewModelNameEqualProductNameSended() {
+        XCTAssertEqual(sut!.name, self.productMock!.name)
+    }
+
+    func test_getDescription_productViewModelDescriptionEqualProductDescriptionSended() {
+        XCTAssertEqual(sut!.description, "Qtd: \(self.productMock!.quantity) / \(self.productMock!.idealQuantity)")
+    }
+
+    func test_getCategory_productViewModelCategoryEqualProductCategorySended() {
+        XCTAssertEqual(sut!.category, self.productMock!.category)
+    }
+
+    func test_getQuantity_productViewModelQuantityEqualProductQuantitySended() {
+        XCTAssertEqual(sut!.quantity, self.productMock!.quantity)
+    }
+
+    func test_getIdealQuantity_productViewModelIdealQuantityEqualProductIdealQuantitySended() {
+        XCTAssertEqual(sut!.idealQuantity, self.productMock!.idealQuantity)
+    }
+
+    func test_getFavorite_productViewModelFavoriteEqualProductFavoriteSended() {
+        XCTAssertEqual(sut!.favorite, self.productMock!.favorite)
     }
 }
