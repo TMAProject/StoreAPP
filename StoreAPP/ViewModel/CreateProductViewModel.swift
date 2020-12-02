@@ -9,7 +9,7 @@ import Foundation
 
 class CreateProductViewModel: ViewModel {
 
-    private let formFields = CreateProductForm()
+    private let formFields = ProductForm.create
     private let repository = ProductRepository()
     private var product: ProductDTO?
 
@@ -23,7 +23,7 @@ class CreateProductViewModel: ViewModel {
     }
 
     var numberOfSections: Int {
-        return formFields.numberOfsections
+        return formFields.numberOfSections
     }
 
     @objc func cancel() {

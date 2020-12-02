@@ -10,6 +10,7 @@ import UIKit
 class StoreRoomTableViewController: UITableViewController {
 
     var viewModel = FavoriteListViewModel()
+    let repository = ProductRepository()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,7 +32,9 @@ class StoreRoomTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.getFavorites()
+        navigationItem.largeTitleDisplayMode = .always
     }
 
 }
@@ -103,6 +106,11 @@ extension StoreRoomTableViewController {
         let configuration = ContextualAction<ProductListAction>(viewModel, actions: [.delete], index: indexPath.row)
         return configuration.setup()
 	}
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let  product = viewModel.productForCell(at: indexPath.row)?.product else { return }
+        navigationController?.pushViewController(EditProductTableViewController(product: product), animated: true)
+    }
 }
 
 // TODO - remover esse protocolo desse arquivo

@@ -32,28 +32,31 @@ extension FavoriteListViewModel {
     }
 
     public func productForCell(at index: Int) -> ProductViewModel? {
-        if numberOfFavorites >= index {
+        if numberOfFavorites > index {
             let product = favoritesList[index]
             return product
-        } else { return nil }
+        }
+        return nil
     }
 
     public func unfavoriteFromCell(at index: Int) -> ProductViewModel? {
-        if numberOfFavorites >= index {
+        if numberOfFavorites > index {
             let product = favoritesList[index]
             _ = repository.unfavorite(object: product.product)
             favoritesList.remove(at: index)
             return product
-        } else { return nil }
+        }
+        return nil
     }
 
     public func deleteFromCell(at index: Int) -> Product? {
-        if numberOfFavorites >= index {
+        if numberOfFavorites > index {
             let product = favoritesList[index]
             _ = repository.delete(object: product.product)
             favoritesList.remove(at: index)
             return product.product
-        } else { return nil }
+        }
+        return nil
     }
 }
 

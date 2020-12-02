@@ -47,7 +47,7 @@ class CustomSectionView: UITableViewHeaderFooterView {
 
     private func setup() {
         self.addSubview(label)
-        self.addSubview(lineViewTop)
+        //self.addSubview(lineViewTop)
         self.addSubview(lineViewBottom)
         self.backgroundColor = .systemBackground
     }
@@ -59,16 +59,16 @@ class CustomSectionView: UITableViewHeaderFooterView {
     private func configureLayout() {
         NSLayoutConstraint.activate([
             self.label.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            self.label.topAnchor.constraint(equalTo: self.lineViewTop.bottomAnchor, constant: 48),
+            self.label.topAnchor.constraint(equalTo: self.topAnchor, constant: 48),
             self.label.bottomAnchor.constraint(equalTo: self.lineViewBottom.topAnchor, constant: -8)
         ])
 
-        NSLayoutConstraint.activate([
-            self.lineViewTop.topAnchor.constraint(equalTo: self.topAnchor),
-            self.lineViewTop.heightAnchor.constraint(equalToConstant: 0.5),
-            self.lineViewTop.leftAnchor.constraint(equalTo: self.label.leftAnchor),
-            self.lineViewTop.rightAnchor.constraint(equalTo: self.rightAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            self.lineViewTop.topAnchor.constraint(equalTo: self.topAnchor),
+//            self.lineViewTop.heightAnchor.constraint(equalToConstant: 0.5),
+//            self.lineViewTop.leftAnchor.constraint(equalTo: self.label.leftAnchor),
+//            self.lineViewTop.rightAnchor.constraint(equalTo: self.rightAnchor)
+//        ])
 
         NSLayoutConstraint.activate([
             self.lineViewBottom.bottomAnchor.constraint(equalTo: self.bottomAnchor),

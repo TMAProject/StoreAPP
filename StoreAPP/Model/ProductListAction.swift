@@ -23,7 +23,7 @@ enum ProductListAction: SwipeAction {
     var color: UIColor {
         switch self {
         case .favorite: return UIColor.systemGreen
-        case .delete: return UIColor.red
+        case .delete: return UIColor.systemRed
         case .unfavorite: return UIColor.systemGray
         }
     }
