@@ -32,7 +32,7 @@ class CreateProductViewModel: ViewModel {
     }
 
     @objc func save() {
-        product = getDataFromField()
+        product = createProductFromFormField()
         guard let product = product else { fatalError("This product don't exist") }
         if let savedProduct = repository.add(object: product) {
             print("Produto: \(savedProduct.name) salvo.")
@@ -54,7 +54,7 @@ class CreateProductViewModel: ViewModel {
         return formFields.fields[sectionName]?[index]
     }
 
-    private func getDataFromField() -> ProductDTO {
+    private func createProductFromFormField() -> ProductDTO {
         var name: String = ""
         var quantity: Int32 = 0
         var idealQuantity: Int32 = 0
