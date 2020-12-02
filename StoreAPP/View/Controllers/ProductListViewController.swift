@@ -16,11 +16,6 @@ class ProductListViewController: UITableViewController {
 		super.init(style: .grouped)
 	}
 
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		//		self.tableView.reloadData()
-	}
-
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -71,50 +66,20 @@ extension ProductListViewController {
 		return 75
 	}
 
-	private func handleMarkAsFavorite(indexPath: IndexPath) {
-        _ = viewModel.favoriteFromCell(at: indexPath.row)
-        print(
-			"""
-			\nAtualiza produto e marca como favorito pelo viewModel com o
-			indexpath \(indexPath), depois recarrega a tableView
-			"""
-		)
-	}
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt
+                                indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let configuration: ContextualAction<ProductListAction>!
+        if viewModel.productList[indexPath.row].favorite {
+            configuration = ContextualAction<ProductListAction>(viewModel, actions: [.unfavorite], index: indexPath.row)
+        } else {
+            configuration = ContextualAction<ProductListAction>(viewModel, actions: [.favorite], index: indexPath.row)
+        }
+        return configuration.setup()
+    }
 
-	private func handleMoveToTrash(indexPath: IndexPath) {
-		_ = viewModel.deleteFromCell(at: indexPath.row)
-
-	}
-
-	override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt
-								indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
-		let swipeFavorite = UIContextualAction(style: .normal,
-											   title: "Favorite") { [weak self] (_, _, completionHandler) in
-
-			self?.handleMarkAsFavorite(indexPath: indexPath)
-			completionHandler(true)
-		}
-
-		swipeFavorite.backgroundColor = .systemGreen
-		let configuration = UISwipeActionsConfiguration(actions: [swipeFavorite])
-
-		return configuration
-	}
-
-	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
-								indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
-		let swipeTrash = UIContextualAction(style: .destructive,
-											title: "Trash") { [weak self] (_, _, completionHandler) in
-
-			self?.handleMoveToTrash(indexPath: indexPath)
-			completionHandler(true)
-		}
-
-		swipeTrash.backgroundColor = .systemRed
-		let configuration = UISwipeActionsConfiguration(actions: [swipeTrash])
-
-		return configuration
-	}
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
+                                indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let configuration = ContextualAction<ProductListAction>(viewModel, actions: [.delete], index: indexPath.row)
+        return configuration.setup()
+    }
 }
