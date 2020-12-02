@@ -16,6 +16,7 @@
 		9F27482B25750F3200D07FA1 /* ContextualAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F27482A25750F3200D07FA1 /* ContextualAction.swift */; };
 		9F27485C2576632500D07FA1 /* CreateProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F27485B2576632500D07FA1 /* CreateProductViewModel.swift */; };
 		9FD7C61D256D45E000E25C77 /* RepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD7C61C256D45E000E25C77 /* RepositoryTest.swift */; };
+		A2206B502577CE10006F3CF3 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2206B4F2577CE10006F3CF3 /* EmptyStateView.swift */; };
 		A2373235256E9B5F00D08892 /* CreateProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2373234256E9B5F00D08892 /* CreateProductTableViewController.swift */; };
 		A237323A256E9D0D00D08892 /* FieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2373239256E9D0D00D08892 /* FieldTableViewCell.swift */; };
 		A2373247256EA7C900D08892 /* CreateProductForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2373246256EA7C900D08892 /* CreateProductForm.swift */; };
@@ -72,6 +73,7 @@
 		9F27482A25750F3200D07FA1 /* ContextualAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextualAction.swift; sourceTree = "<group>"; };
 		9F27485B2576632500D07FA1 /* CreateProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductViewModel.swift; sourceTree = "<group>"; };
 		9FD7C61C256D45E000E25C77 /* RepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTest.swift; sourceTree = "<group>"; };
+		A2206B4F2577CE10006F3CF3 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		A2373234256E9B5F00D08892 /* CreateProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductTableViewController.swift; sourceTree = "<group>"; };
 		A2373239256E9D0D00D08892 /* FieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTableViewCell.swift; sourceTree = "<group>"; };
 		A2373246256EA7C900D08892 /* CreateProductForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductForm.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				A2AB60A9256BF31D00A0C763 /* CategoriesView.swift */,
 				A2F91EE5256FD14600A7252F /* CustomSectionView.swift */,
 				9F27482A25750F3200D07FA1 /* ContextualAction.swift */,
+				A2206B4F2577CE10006F3CF3 /* EmptyStateView.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				ECBE1A412566C13800421F29 /* ProductRepository.swift in Sources */,
 				9F0DA5F3256BFE8F00294827 /* Repository.swift in Sources */,
 				A237323A256E9D0D00D08892 /* FieldTableViewCell.swift in Sources */,
+				A2206B502577CE10006F3CF3 /* EmptyStateView.swift in Sources */,
 				9F27482625750E8A00D07FA1 /* ProductListAction.swift in Sources */,
 				ECBE1A462566C14900421F29 /* TabBarCoordinator.swift in Sources */,
 				9F27482B25750F3200D07FA1 /* ContextualAction.swift in Sources */,
