@@ -21,8 +21,12 @@ class ProductListViewController: UITableViewController {
 	}
 
 	@objc private func addButtonAction() {
-        let createProduct = CreateProductTableViewController()
-
+        let createViewModel = CreateProductViewModel(category: viewModel.category)
+        let createProduct = CreateProductTableViewController(viewModel: createViewModel)
+        createProduct.callback = {
+            _ = self.viewModel.getProductsViewModel()
+            self.tableView.reloadData()
+        }
         let navController = UINavigationController(rootViewController: createProduct)
         self.navigationController?.present(navController, animated: true, completion: nil)
 	}
@@ -48,7 +52,11 @@ class ProductListViewController: UITableViewController {
 extension ProductListViewController {
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return viewModel.numberOfProducts
+        let count = viewModel.numberOfProducts
+        if count == 0 {
+            self.activateEmptyState()
+        }
+		return count
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,5 +93,13 @@ extension ProductListViewController {
                                 indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let configuration = ContextualAction<ProductListAction>(viewModel, actions: [.delete], index: indexPath.row)
         return configuration.setup()
+    }
+}
+
+extension ProductListViewController {
+    func activateEmptyState() {
+        let testeView = EmptyStateView()
+        testeView.configure(with: "Sem produtos aqui")
+        self.tableView.backgroundView = testeView
     }
 }

@@ -66,13 +66,9 @@ extension EditProductViewModel {
 
 }
 
-protocol FieldDelegate: class {
-    func updateTextField(text: String, identifier: ProductFields)
-}
-
-extension EditProductViewModel: FieldDelegate {
-    func updateTextField(text: String, identifier: ProductFields) {
-        switch identifier {
+extension EditProductViewModel: ProductFieldDelegate {
+    func didUpdateTextField(text: String, field: ProductFields) {
+        switch field {
         case .name:
             self.productDTO.name = text
         case .quantity:
