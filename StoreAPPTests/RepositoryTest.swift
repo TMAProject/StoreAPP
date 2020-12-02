@@ -25,7 +25,7 @@ class RepositoryTest: XCTestCase {
 
         // then
         let fetchedProduct = repository.get(object: savedProduct!)
-        XCTAssertEqual(fetchedProduct, savedProduct)
+		XCTAssertEqual(fetchedProduct?.name, savedProduct?.name) // estava comparando valores iguais com itens diferentes
     }
 
     override func setUpWithError() throws {
@@ -34,7 +34,7 @@ class RepositoryTest: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    }//x-coredata://B068BF7B-9D6D-46FD-81A0-D61C014F6496/Product/p9
 
     func testExample() throws {
         // This is an example of a functional test case.
