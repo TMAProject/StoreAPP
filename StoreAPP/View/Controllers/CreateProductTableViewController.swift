@@ -41,9 +41,9 @@ class CreateProductTableViewController: UITableViewController {
      func configurateNavigationBar() {
         self.title = "Novo Produto"
         self.isModalInPresentation = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Salvar", style: .done, target: self,
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Salvar", style: .done, target: self.viewModel,
                                                                  action: #selector(viewModel.save))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancelar", style: .plain, target: self,
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancelar", style: .plain, target: self.viewModel,
                                                                 action: #selector(viewModel.cancel))
     }
 
@@ -74,7 +74,7 @@ extension CreateProductTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifier, for: indexPath) as? FieldTableViewCell
         if let fieldName = viewModel.getFieldBySectionName(section: indexPath.section, at: indexPath.row) {
-            cell?.configure(label: fieldName)
+            cell?.configure(with: fieldName)
             viewModel.bindCell(cell: cell)
         }
         return cell ?? UITableViewCell()

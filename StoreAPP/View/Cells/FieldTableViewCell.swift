@@ -36,6 +36,7 @@ class FieldTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setup()
         self.configureLayout()
+        self.backgroundColor = .systemBackground
         self.textField.addTarget(self, action: #selector(didChanged), for: .editingChanged)
     }
 

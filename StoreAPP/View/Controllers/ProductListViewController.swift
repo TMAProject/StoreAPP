@@ -25,7 +25,8 @@ class ProductListViewController: UITableViewController {
         let createProduct = CreateProductTableViewController(viewModel: createViewModel)
         createProduct.callback = {
             _ = self.viewModel.getProductsViewModel()
-            self.tableView.reloadData()
+//            self.tableView.reloadData()
+            self.viewModel.handleUpdate?()
         }
         let navController = UINavigationController(rootViewController: createProduct)
         self.navigationController?.present(navController, animated: true, completion: nil)
@@ -55,6 +56,8 @@ extension ProductListViewController {
         let count = viewModel.numberOfProducts
         if count == 0 {
             self.activateEmptyState()
+        } else {
+            self.deactivateEmptyState()
         }
 		return count
 	}
@@ -98,8 +101,12 @@ extension ProductListViewController {
 
 extension ProductListViewController {
     func activateEmptyState() {
-        let testeView = EmptyStateView()
-        testeView.configure(with: "Sem produtos aqui")
-        self.tableView.backgroundView = testeView
+        let emptyView = EmptyStateView()
+        emptyView.configure(with: "Sem produtos aqui")
+        self.tableView.backgroundView = emptyView
+    }
+
+    func deactivateEmptyState() {
+        self.tableView.backgroundView = nil
     }
 }
