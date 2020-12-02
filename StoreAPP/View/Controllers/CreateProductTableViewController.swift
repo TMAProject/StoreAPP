@@ -23,10 +23,10 @@ class CreateProductTableViewController: UITableViewController {
     }
 
     private func consigurateNavigationBar() {
-        self.title = "New product"
+        self.title = "Novo Produto"
         self.isModalInPresentation = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Salvar", style: .done, target: self, action: #selector(save))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: #selector(cancel))
     }
 
     @objc func cancel() {

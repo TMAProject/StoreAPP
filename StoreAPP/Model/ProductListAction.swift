@@ -14,9 +14,9 @@ enum ProductListAction: SwipeAction {
 
     var title: String {
         switch self {
-        case .favorite: return "Favorite"
-        case .delete: return "Delete"
-        case .unfavorite: return "Unfavorite"
+        case .favorite: return "Favoritar"
+        case .delete: return "Deletar"
+        case .unfavorite: return "Desfavoritar"
         }
     }
 

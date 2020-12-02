@@ -28,7 +28,7 @@ class StoreRoomTableViewController: UITableViewController {
 
     private func configureNavigation() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.title = "Store room"
+        self.title = "Despensa"
     }
 
     override func viewWillAppear(_ animated: Bool) {

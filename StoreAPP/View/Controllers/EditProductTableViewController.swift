@@ -37,7 +37,7 @@ class EditProductTableViewController: UITableViewController {
 
     private func consigurateNavigationBar() {
         self.title = "Editar Produto"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Salvar", style: .done,
                                                                  target: viewModel, action: #selector(viewModel.save))
     }
 
