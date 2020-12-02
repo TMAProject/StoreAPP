@@ -10,7 +10,7 @@ import UIKit
 
 class CreateProductTableViewController: UITableViewController {
 
-    private let formFields: CreateProductForm = CreateProductForm()
+    private let formFields: ProductForm = ProductForm.create
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class CreateProductTableViewController: UITableViewController {
 
 extension CreateProductTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return formFields.numberOfsections
+        return formFields.sections.count
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -72,7 +72,7 @@ extension CreateProductTableViewController {
 
         guard let fieldCell = cell, let label = fieldName else { return FieldTableViewCell() }
 
-        fieldCell.configure(label: label)
+        fieldCell.configure(with: label)
         return fieldCell
     }
 }

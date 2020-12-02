@@ -52,3 +52,14 @@ extension ProductViewModel {
     }
 
 }
+
+extension ProductDTO {
+     init(product: Product) {
+        self.name = product.name
+        self.category = product.category
+        self.quatity = product.quantity
+        self.idealQuantity = product.idealQuantity
+        self.favorite = product.favorite
+    }
+
+}

@@ -81,6 +81,10 @@ extension ProductListViewController {
         return configuration.setup()
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let product = viewModel.productForCell(at: indexPath.row)?.product else { return }
+        navigationController?.pushViewController(EditProductTableViewController(product: product), animated: true)
+    }
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
                                 indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let configuration = ContextualAction<ProductListAction>(viewModel, actions: [.delete], index: indexPath.row)
