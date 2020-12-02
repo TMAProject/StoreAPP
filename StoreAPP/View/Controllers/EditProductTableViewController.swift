@@ -10,8 +10,6 @@ import UIKit
 
 class EditProductTableViewController: UITableViewController {
 
-    private let formFields: ProductForm = ProductForm.edit
-
     let viewModel: EditProductViewModel
 
     init(product: Product) {
@@ -28,7 +26,8 @@ class EditProductTableViewController: UITableViewController {
         self.consigurateNavigationBar()
         self.view.backgroundColor = .systemBackground
         self.tableView.register(FieldTableViewCell.self, forCellReuseIdentifier: FieldTableViewCell.reuseIdentifier)
-        self.tableView.register(CustomSectionView.self, forHeaderFooterViewReuseIdentifier: CustomSectionView.reuseIdentifier)
+        self.tableView.register(CustomSectionView.self,
+                                forHeaderFooterViewReuseIdentifier: CustomSectionView.reuseIdentifier)
         self.tableView.tableFooterView = UIView()
         self.tableView.allowsSelection = false
         viewModel.handleDismiss = {
@@ -37,10 +36,10 @@ class EditProductTableViewController: UITableViewController {
     }
 
     private func consigurateNavigationBar() {
-        self.title = "Edit Product"
-        self.isModalInPresentation = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: viewModel, action: #selector(viewModel.save))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: viewModel, action: #selector(viewModel.dismiss))
+        self.title = viewModel.product.name
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
+                                                                 target: viewModel, action: #selector(viewModel.save))
     }
 }
 
@@ -52,7 +51,8 @@ extension EditProductTableViewController {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
-            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomSectionView.reuseIdentifier) as? CustomSectionView
+            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomSectionView.reuseIdentifier)
+                as? CustomSectionView
             guard let headerView = view else { return UIView() }
             headerView.configure(with: viewModel.sectionName(at: section))
 
@@ -71,7 +71,8 @@ extension EditProductTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifier, for: indexPath) as? FieldTableViewCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifier,
+                                                      for: indexPath) as? FieldTableViewCell
 
         let fieldName = viewModel.fieldName(section: indexPath.section, index: indexPath.row)
         let fieldValues = viewModel.fieldValues(section: indexPath.section, index: indexPath.row)

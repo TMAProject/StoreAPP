@@ -23,7 +23,8 @@ class EditProductViewModel: ViewModel {
 
 extension EditProductViewModel {
     var ordenatedFields: [String: [String]] {
-        return ["": ["\(self.product.name)", "\(self.product.category)"], "Estoque": ["\(self.product.quantity)", "\(self.product.idealQuantity)"]]
+        return ["": ["\(self.product.name)", "\(self.product.category)"],
+                "Estoque": ["\(self.product.quantity)", "\(self.product.idealQuantity)"]]
     }
 
     var numberOfSections: Int {
@@ -37,10 +38,6 @@ extension EditProductViewModel {
         self.product.idealQuantity = self.productDTO.idealQuantity
         self.product.favorite = self.productDTO.favorite
         _ = repository.service.save()
-        handleDismiss?()
-    }
-
-    @objc public func dismiss() {
         handleDismiss?()
     }
 
@@ -69,7 +66,6 @@ extension EditProductViewModel {
 
 }
 
-
 protocol FieldDelegate: class {
     func updateTextField(text: String, identifier: ProductFields)
 }
@@ -79,12 +75,10 @@ extension EditProductViewModel: FieldDelegate {
         switch identifier {
         case .description:
             self.productDTO.name = text
-        case .category:
-            self.productDTO.category = Int16(text) ?? 0
         case .quantity:
             self.productDTO.quatity = Int32(text) ?? 0
         case .idealQuantity:
-        self.productDTO.idealQuantity = Int32(text) ?? 0
+            self.productDTO.idealQuantity = Int32(text) ?? 0
         }
     }
 

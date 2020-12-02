@@ -32,4 +32,3 @@ struct Schema {
             case name
         }
     }
-

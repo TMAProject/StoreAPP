@@ -53,7 +53,6 @@ extension ProductViewModel {
 
 }
 
-
 extension ProductDTO {
      init(product: Product) {
         self.name = product.name

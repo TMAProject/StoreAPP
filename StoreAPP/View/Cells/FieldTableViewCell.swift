@@ -10,11 +10,10 @@ import UIKit
 class FieldTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "FieldTableViewCell"
-    
-    weak var delegate : FieldDelegate?
-    
-    var identifier : ProductFields?
-    
+
+    weak var delegate: FieldDelegate?
+    var identifier: ProductFields?
+
     let textField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .systemBackground
@@ -75,7 +74,7 @@ class FieldTableViewCell: UITableViewCell {
 }
 
 extension FieldTableViewCell {
-    @objc func didChanged(textField: UITextField){
+    @objc func didChanged(textField: UITextField) {
         if let text = textField.text, let identifier = self.identifier {
             self.delegate?.updateTextField(text: text, identifier: identifier)
         }

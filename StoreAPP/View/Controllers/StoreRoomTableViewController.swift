@@ -146,7 +146,7 @@ extension StoreRoomTableViewController {
 
 		return configuration
 	}
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let  product = viewModel.productForCell(at: indexPath.row)?.product else { return }
         navigationController?.pushViewController(EditProductTableViewController(product: product), animated: true)
