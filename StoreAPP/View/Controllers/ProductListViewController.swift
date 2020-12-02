@@ -48,7 +48,11 @@ class ProductListViewController: UITableViewController {
 extension ProductListViewController {
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return viewModel.numberOfProducts
+        let count = viewModel.numberOfProducts
+        if count == 0 {
+            self.activateEmptyState()
+        }
+		return count
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,5 +85,13 @@ extension ProductListViewController {
                                 indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let configuration = ContextualAction<ProductListAction>(viewModel, actions: [.delete], index: indexPath.row)
         return configuration.setup()
+    }
+}
+
+extension ProductListViewController {
+    func activateEmptyState() {
+        let testeView = EmptyStateView()
+        testeView.configure(with: "Sem produtos aqui")
+        self.tableView.backgroundView = testeView
     }
 }

@@ -103,6 +103,22 @@ extension StoreRoomTableViewController {
         let configuration = ContextualAction<ProductListAction>(viewModel, actions: [.delete], index: indexPath.row)
         return configuration.setup()
 	}
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 1 && self.viewModel.numberOfFavorites == 0 {
+            let testeView = EmptyStateView()
+            testeView.configure(with: "Sem produtos aqui")
+            return testeView
+        }
+        return nil
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+         if section == 1 && self.viewModel.numberOfFavorites == 0 {
+             return self.view.frame.height * 0.44
+         }
+         return 0
+     }
 }
 
 // TODO - remover esse protocolo desse arquivo

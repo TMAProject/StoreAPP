@@ -46,5 +46,6 @@ class FieldTableViewCell: UITableViewCell {
 
     func configure(label with: String) {
         self.textField.placeholder = with
+        self.textField.keyboardType = .numberPad
     }
 }
