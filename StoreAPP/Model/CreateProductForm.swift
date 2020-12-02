@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol ProductFieldDelegate: class {
+    func didUpdateTextField(text: String, field: ProductFields)
+}
+
 enum ProductForm {
     case create
     case edit
