@@ -4,8 +4,7 @@
 //
 //  Created by José João Silva Nunes Alves on 25/11/20.
 //
-
-import Foundation
+import UIKit
 
 enum ProductForm {
     case create
@@ -44,8 +43,19 @@ enum ProductSections {
     case estoque
 }
 
-enum ProductFields: String {
-    case name = "Name"
+enum ProductFields: String{
+    case name = "Nome"
     case quantity = "Quantidade"
     case idealQuantity = "Quantidade ideal"
+    
+    var keyboardType : UIKeyboardType {
+        switch self {
+        case .name:
+            return UIKeyboardType.default
+        case .quantity:
+            return UIKeyboardType.numberPad
+        case .idealQuantity:
+            return UIKeyboardType.numberPad
+        }
+    }
 }

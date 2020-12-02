@@ -81,5 +81,4 @@ extension EditProductViewModel: FieldDelegate {
             self.productDTO.idealQuantity = Int32(text) ?? 0
         }
     }
-
 }
