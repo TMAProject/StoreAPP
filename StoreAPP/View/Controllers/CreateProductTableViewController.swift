@@ -39,7 +39,7 @@ class CreateProductTableViewController: UITableViewController {
     }
 
     private func configureNavigationBar() {
-        self.title = "New product"
+        self.title = "Novo Produto"
         self.isModalInPresentation = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: viewModel, action: #selector(viewModel.save))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: viewModel, action: #selector(viewModel.cancel))
