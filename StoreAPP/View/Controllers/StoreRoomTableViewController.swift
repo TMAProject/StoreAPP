@@ -10,6 +10,7 @@ import UIKit
 class StoreRoomTableViewController: UITableViewController {
 
     var viewModel = FavoriteListViewModel()
+    let repository = ProductRepository()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -145,6 +146,11 @@ extension StoreRoomTableViewController {
 
 		return configuration
 	}
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let  product = viewModel.productForCell(at: indexPath.row)?.product else { return }
+        navigationController?.pushViewController(EditProductTableViewController(product: product), animated: true)
+    }
 }
 
 // TODO - remover esse protocolo desse arquivo
