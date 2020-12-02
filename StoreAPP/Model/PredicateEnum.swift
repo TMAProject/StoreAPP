@@ -18,7 +18,7 @@ enum ProductPredicate: PredicateProtocol {
         switch self {
 
         case .getFromId(let identifier):
-            return NSPredicate(format: "id = %@", identifier)
+            return NSPredicate(format: "name = %@", identifier)
 
         case .getFromCategory(let category):
             return NSPredicate(format: "category = %@", "\(category)")

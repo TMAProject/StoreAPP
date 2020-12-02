@@ -59,3 +59,14 @@ extension FavoriteListViewModel {
         return nil
     }
 }
+
+extension FavoriteListViewModel: SwipeActionDelegate {
+    func didPerform(action: SwipeAction, index: Int) {
+        guard let action = action as? ProductListAction else { return }
+        switch action {
+        case .delete: _ = deleteFromCell(at: index)
+        case .unfavorite: _ = unfavoriteFromCell(at: index)
+        default: _ = unfavoriteFromCell(at: index)
+        }
+    }
+}
