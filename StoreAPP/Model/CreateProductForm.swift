@@ -47,12 +47,12 @@ enum ProductSections {
     case estoque
 }
 
-enum ProductFields: String{
+enum ProductFields: String {
     case name = "Nome"
     case quantity = "Quantidade"
     case idealQuantity = "Quantidade ideal"
-    
-    var keyboardType : UIKeyboardType {
+
+    var keyboardType: UIKeyboardType {
         switch self {
         case .name:
             return UIKeyboardType.default

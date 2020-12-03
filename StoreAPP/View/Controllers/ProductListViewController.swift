@@ -47,6 +47,12 @@ class ProductListViewController: UITableViewController {
         }
 	}
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        _ = self.viewModel.getProductsViewModel()
+        self.viewModel.handleUpdate?()
+    }
+
 }
 
 // MARK: - UITablewViewDelegate + UItableViewDatasource

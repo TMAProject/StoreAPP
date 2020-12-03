@@ -56,7 +56,7 @@ class EmptyStateView: UIView {
             label.topAnchor.constraint(equalTo: self.image.bottomAnchor, constant: 8)
         ])
     }
-    
+
     func configure(with title: String) {
         self.label.text = title
     }
