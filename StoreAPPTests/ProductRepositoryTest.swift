@@ -1,5 +1,5 @@
 //
-//  RepositoryTest.swift
+//  ProductRepositoryTest.swift
 //  StoreAPPTests
 //
 //  Created by Academy on 24/11/20.
@@ -9,40 +9,55 @@ import XCTest
 import CoreData
 @testable import StoreAPP
 
-class RepositoryTest: XCTestCase {
+class ProductRepositoryTest: XCTestCase {
 
 	var repository: ProductRepository!
 	var productMock: Product!
 
-	override func setUp() {
-		super.setUp()
-		repository = ProductRepository()
+    let persistentStore: NSPersistentContainer = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let container = appDelegate?.persistentContainer
+        guard let persistentContainer = container else { fatalError() }
+        return persistentContainer
+    }()
 
-		productMock = repository.add(
-			object:
-				ProductDTO(
-					name: "Suco de Limao",
-					category: Int16(Category.drinks.rawValue),
-					quatity: 1,
-					idealQuantity: 5,
-					favorite: false
-				)
-		)
-	}
+    func createMockProduct() -> Product {
+        let entity = NSEntityDescription.entity(forEntityName: "Product", in: persistentStore.viewContext)
+        let product = Product(entity: entity!, insertInto: persistentStore.viewContext)
+
+        product.setValue("productName", forKey: "name")
+        product.setValue(1, forKey: "category")
+        product.setValue(15, forKey: "idealQuantity")
+        product.setValue(10, forKey: "quantity")
+        product.setValue(false, forKey: "favorite")
+
+        return product
+    }
+
+    override func setUp() {
+        repository = ProductRepository()
+        productMock = createMockProduct()
+    }
 
 	override func tearDown() {
-		_ = repository.delete(object: productMock)
+        self.cleanRepository()
 		repository = nil
 		productMock = nil
-		super.tearDown()
 	}
+
+    private func cleanRepository() {
+        let produtList = repository.getAll()
+        for product in produtList {
+            _ = repository.delete(object: product)
+        }
+    }
 
 	func test_add_true() {
 		// given
-		let product = ProductDTO(name: "b", category: 0, quatity: 0, idealQuantity: 0, favorite: true)
+		let product = ProductDTO(product: productMock)
 
 		// when
-		let savedProduct = repository.add(object: product)
+        let savedProduct = repository.add(object: product)
 
 		// then
 		let fetchedProduct = repository.get(object: savedProduct!)
@@ -104,25 +119,4 @@ class RepositoryTest: XCTestCase {
 		// then
 		XCTAssertNotNil(deleteProduct)
 	}
-
-	override func setUpWithError() throws {
-		// Put setup code here. This method is called before the invocation of each test method in the class.
-	}
-
-	override func tearDownWithError() throws {
-		// Put teardown code here. This method is called after the invocation of each test method in the class.
-	}//x-coredata://B068BF7B-9D6D-46FD-81A0-D61C014F6496/Product/p9
-
-	func testExample() throws {
-		// This is an example of a functional test case.
-		// Use XCTAssert and related functions to verify your tests produce the correct results.
-	}
-
-	func testPerformanceExample() throws {
-		// This is an example of a performance test case.
-		self.measure {
-			// Put the code you want to measure the time of here.
-		}
-	}
-
 }
