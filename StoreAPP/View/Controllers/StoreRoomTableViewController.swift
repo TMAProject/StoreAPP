@@ -23,13 +23,6 @@ class StoreRoomTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-
-        viewModel.handleRemoveFromCell = { index in
-            self.tableView.beginUpdates()
-            self.viewModel.favoritesList.remove(at: index.row)
-            self.tableView.deleteRows(at: [index], with: .none)
-            self.tableView.endUpdates()
-        }
 	}
 
     private func configureNavigation() {

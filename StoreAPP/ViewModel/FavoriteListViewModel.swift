@@ -41,7 +41,8 @@ extension FavoriteListViewModel {
         if numberOfFavorites > index {
             let product = favoritesList[index]
             _ = repository.unfavorite(object: product.product)
-            handleRemoveFromCell?(IndexPath(row: index, section: 1))
+            self.favoritesList.remove(at: index)
+            self.handleUpdate?()
             return product
         }
         return nil
@@ -51,7 +52,8 @@ extension FavoriteListViewModel {
         if numberOfFavorites > index {
             let product = favoritesList[index]
             _ = repository.delete(object: product.product)
-            handleRemoveFromCell?(IndexPath(row: index, section: 1))
+            self.favoritesList.remove(at: index)
+            self.handleUpdate?()
             return product.product
         }
         return nil
