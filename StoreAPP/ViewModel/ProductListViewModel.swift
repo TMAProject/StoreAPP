@@ -9,15 +9,13 @@ import Foundation
 
 class ProductListViewModel {
 
-    var productList: [ProductViewModel] = [] {
-        didSet {
-            handleUpdate?()
-        }
-    }
+    var productList: [ProductViewModel] = []
     let repository = ProductRepository()
     let category: Category
 
     var handleUpdate: (() -> Void)?
+
+    var handleRemoveFromCell: ((_ removeAt: IndexPath) -> Void)?
 
     init(category: Category) {
         self.category = category
@@ -48,7 +46,8 @@ extension ProductListViewModel {
         if numberOfProducts > index {
             let product = productList[index]
             _ = repository.delete(object: product.product)
-            productList.remove(at: index)
+            handleRemoveFromCell?(IndexPath(row: index, section: 0))
+            // productList.remove(at: index)
             return product
         }
         return nil

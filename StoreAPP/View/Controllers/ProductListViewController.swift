@@ -25,7 +25,6 @@ class ProductListViewController: UITableViewController {
         let createProduct = CreateProductTableViewController(viewModel: createViewModel)
         createProduct.callback = {
             _ = self.viewModel.getProductsViewModel()
-//            self.tableView.reloadData()
             self.viewModel.handleUpdate?()
         }
         let navController = UINavigationController(rootViewController: createProduct)
@@ -44,6 +43,13 @@ class ProductListViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+        }
+
+        viewModel.handleRemoveFromCell = { index in
+            self.tableView.beginUpdates()
+            self.viewModel.productList.remove(at: index.row)
+            self.tableView.deleteRows(at: [index], with: .automatic)
+            self.tableView.endUpdates()
         }
 	}
 
