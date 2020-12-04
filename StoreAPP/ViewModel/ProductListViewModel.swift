@@ -47,7 +47,6 @@ extension ProductListViewModel {
             let product = productList[index]
             _ = repository.delete(object: product.product)
             handleRemoveFromCell?(IndexPath(row: index, section: 0))
-            // productList.remove(at: index)
             return product
         }
         return nil
