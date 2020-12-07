@@ -73,10 +73,10 @@ extension CreateProductTableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifier, for: indexPath) as? FieldTableViewCell
-        if let fieldName = viewModel.getFieldBySectionName(section: indexPath.section, at: indexPath.row) {
-            cell?.configure(with: fieldName)
-            viewModel.bindCell(cell: cell)
-        }
-        return cell ?? UITableViewCell()
+        let fieldName = viewModel.fieldName(section: indexPath.section, index: indexPath.row)!
+        guard let fieldCell = cell else { return FieldTableViewCell() }
+        fieldCell.delegate = viewModel
+        fieldCell.configure(with: fieldName)
+        return fieldCell
     }
 }
