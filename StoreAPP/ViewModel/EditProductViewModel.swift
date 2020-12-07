@@ -24,7 +24,7 @@ class EditProductViewModel: ViewModel {
 extension EditProductViewModel {
     var ordenatedFields: [String: [String]] {
         return ["": ["\(self.product.name)", "\(self.product.category)"],
-                "Estoque(unidade)": ["\(self.product.quantity)", "\(self.product.idealQuantity)"]]
+                "Estoque(unidade de medida)": ["\(self.product.quantity)", "\(self.product.idealQuantity)"]]
     }
 
     var numberOfSections: Int {
