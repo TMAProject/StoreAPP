@@ -11,7 +11,7 @@ class CreateProductViewModel: ViewModel {
 
     let formFields = ProductForm.create
     let repository = ProductRepository()
-    var productDTO: ProductDTO?
+    var productDTO = ProductDTO.empty
 
     public var handleDismiss: (() -> Void)?
     public var category: Category
@@ -29,24 +29,9 @@ class CreateProductViewModel: ViewModel {
     }
 
     @objc func save() {
-        var emptyProduct = ProductDTO.empty
-        emptyProduct.category = Int16(category.rawValue)
-        _ = repository.add(object: productDTO ?? emptyProduct)
+        productDTO.category = Int16(category.rawValue)
+        _ = repository.add(object: productDTO)
         handleDismiss?()
-    }
-
-    func getSectionName(at section: Int) -> String {
-        return formFields.sections[section]
-    }
-
-    func numberOfRows(at section: Int) -> Int {
-        let sectionName = getSectionName(at: section)
-        return formFields.fields[sectionName]?.count ?? 0
-    }
-
-    func getFieldBySectionName(section: Int, at index: Int) -> String? {
-        let sectionName = getSectionName(at: section)
-        return formFields.fields[sectionName]?[index]
     }
 
 }
@@ -72,11 +57,11 @@ extension CreateProductViewModel: ProductFieldDelegate {
     func didUpdateTextField(text: String, field: ProductFields) {
         switch field {
         case .name:
-            self.productDTO?.name = text
+            self.productDTO.name = text
         case .quantity:
-            self.productDTO?.quatity = Int32(text) ?? 0
+            self.productDTO.quatity = Int32(text) ?? 0
         case .idealQuantity:
-            self.productDTO?.idealQuantity = Int32(text) ?? 0
+            self.productDTO.idealQuantity = Int32(text) ?? 0
         }
     }
 }
