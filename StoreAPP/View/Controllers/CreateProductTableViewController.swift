@@ -26,6 +26,7 @@ class CreateProductTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configurateNavigationBar()
+        self.view.backgroundColor = .systemBackground
 
         viewModel.handleDismiss = {
             self.dismiss(animated: true, completion: nil)

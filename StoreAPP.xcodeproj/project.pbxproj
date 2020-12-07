@@ -21,6 +21,7 @@
 		A2373235256E9B5F00D08892 /* CreateProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2373234256E9B5F00D08892 /* CreateProductTableViewController.swift */; };
 		A237323A256E9D0D00D08892 /* FieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2373239256E9D0D00D08892 /* FieldTableViewCell.swift */; };
 		A2373247256EA7C900D08892 /* CreateProductForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2373246256EA7C900D08892 /* CreateProductForm.swift */; };
+		A24A0EA6257E545B0051BDF9 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24A0EA5257E545B0051BDF9 /* ProductTableViewCell.swift */; };
 		A27B15C325752A1100E4335B /* FavoriteListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B15C225752A1100E4335B /* FavoriteListViewModelTest.swift */; };
 		A2AB60AA256BF31D00A0C763 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AB60A9256BF31D00A0C763 /* CategoriesView.swift */; };
 		A2E4932A25751099001DFC71 /* ProductViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E4932925751099001DFC71 /* ProductViewModelTest.swift */; };
@@ -79,6 +80,7 @@
 		A2373234256E9B5F00D08892 /* CreateProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductTableViewController.swift; sourceTree = "<group>"; };
 		A2373239256E9D0D00D08892 /* FieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTableViewCell.swift; sourceTree = "<group>"; };
 		A2373246256EA7C900D08892 /* CreateProductForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductForm.swift; sourceTree = "<group>"; };
+		A24A0EA5257E545B0051BDF9 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		A27B15C225752A1100E4335B /* FavoriteListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModelTest.swift; sourceTree = "<group>"; };
 		A2AB60A9256BF31D00A0C763 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		A2E4932925751099001DFC71 /* ProductViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModelTest.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			children = (
 				ECBE1A4F2566C16D00421F29 /* CardCategoryCell.swift */,
 				A2373239256E9D0D00D08892 /* FieldTableViewCell.swift */,
+				A24A0EA5257E545B0051BDF9 /* ProductTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F27485C2576632500D07FA1 /* CreateProductViewModel.swift in Sources */,
+				A24A0EA6257E545B0051BDF9 /* ProductTableViewCell.swift in Sources */,
 				ECBB892825766F5E004EE217 /* EditProductViewModel.swift in Sources */,
 				ECC8591B257126AA002BDB19 /* PredicateEnum.swift in Sources */,
 				ECBB8923257661F0004EE217 /* EditProductTableViewController.swift in Sources */,

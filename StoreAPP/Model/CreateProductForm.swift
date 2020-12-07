@@ -17,9 +17,9 @@ enum ProductForm {
     var sections: [String] {
         switch self {
         case .create:
-            return ["", "Estoque"]
+            return ["", "Estoque(unidade)"]
         case .edit:
-            return ["", "Estoque"]
+            return ["", "Estoque(unidade)"]
         }
     }
 
@@ -35,9 +35,9 @@ enum ProductForm {
     var fields: [String: [String]] {
         switch self {
         case .create:
-            return ["": ["Nome"], "Estoque": ["Quantidade", "Quantidade ideal"]]
+            return ["": ["Nome"], "Estoque(unidade)": ["Quantidade", "Quantidade ideal"]]
         case .edit:
-            return ["": ["Nome"], "Estoque": ["Quantidade", "Quantidade ideal"]]
+            return ["": ["Nome"], "Estoque(unidade)": ["Quantidade", "Quantidade ideal"]]
         }
     }
 }

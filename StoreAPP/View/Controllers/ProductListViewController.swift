@@ -51,6 +51,8 @@ class ProductListViewController: UITableViewController {
             self.tableView.deleteRows(at: [index], with: .automatic)
             self.tableView.endUpdates()
         }
+
+        self.tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.reuseIdentifier)
 	}
 
     override func viewWillAppear(_ animated: Bool) {
@@ -78,11 +80,15 @@ extension ProductListViewController {
 
 		guard let product = viewModel.productForCell(at: indexPath.row) else { return UITableViewCell() }
 
-		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-		cell.textLabel?.text = product.name
-        cell.detailTextLabel?.text = product.description
-		cell.accessoryType = .disclosureIndicator
-		return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.reuseIdentifier, for: indexPath) as? ProductTableViewCell
+        guard let productCell = cell else {
+            return UITableViewCell()
+        }
+        let iconName = product.favorite ? "star.fill" : ""
+        productCell.configure(primaryText: product.name, secondaryText: product.description, iconName: iconName)
+        productCell.accessoryType = .disclosureIndicator
+
+		return productCell
 	}
 
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
