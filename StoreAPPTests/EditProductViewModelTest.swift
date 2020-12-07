@@ -34,6 +34,10 @@ class EditViewModelTest: XCTestCase {
         return product
     }
 
+    override func tearDown() {
+        productMock = nil
+    }
+
     override func setUp() {
         self.productMock = createMockProduct()
         self.sut = EditProductViewModel(self.productMock!)
@@ -44,11 +48,11 @@ class EditViewModelTest: XCTestCase {
     }
 
     func test_ordenatedFields_EqualToMockedOrdenatedFields() {
+        //given
         let ordenatedFields = sut?.ordenatedFields
-
         let mockedString = ["": ["\(self.productMock!.name)", "\(self.productMock!.category)"],
                             "Estoque": ["\(self.productMock!.quantity)", "\(self.productMock!.idealQuantity)"]]
-
+        //then
         XCTAssertEqual(ordenatedFields, mockedString)
     }
 
@@ -57,49 +61,69 @@ class EditViewModelTest: XCTestCase {
     }
 
     func test_save_EqualToProductDTOName() {
+        //given
         _ = sut?.save()
         let productTest = sut?.productDTO.name
+
+        //then
         XCTAssertEqual(self.productMock?.name, productTest)
     }
 
     func test_numberOfRowsForSection_EqualToFormFields() {
+        //guven
         let numberOfRows = sut?.numberOfRowsForSection(at: 1)
+
+        //then
         XCTAssertEqual(formField.fields["Estoque"]?.count, numberOfRows)
     }
 
     func test_fieldsName_EqualToFormFields() {
+        //given
         let fieldName = sut?.fieldName(section: 1, index: 0)
         let expectedName = formField.fields["Estoque"]?[0]
+        //then
         XCTAssertEqual(fieldName, expectedName)
     }
 
     func test_FieldValues_EqualToProductMockName() {
+        //given
         let fieldValue = sut?.fieldValues(section: 0, index: 0)
+        //then
         XCTAssertEqual(fieldValue, productMock?.name)
     }
 
     func test_didUpdateTextField_EqualToProductDTOName() {
+        //given
         _ = sut?.didUpdateTextField(text: "Teste", field: ProductFields.name)
+        //then
         XCTAssertEqual(sut?.productDTO.name, "Teste")
     }
 
     func test_didUpdateTextField_EqualToProductDTOQuantity() {
+        //given
         _ = sut?.didUpdateTextField(text: "10", field: ProductFields.quantity)
+        //then
         XCTAssertEqual(sut?.productDTO.quatity, 10)
     }
 
     func test_didUpdateTextField_EqualToProductDTOIdealQuantity() {
+        //given
         _ = sut?.didUpdateTextField(text: "20", field: ProductFields.idealQuantity)
+        //then
         XCTAssertEqual(sut?.productDTO.idealQuantity, 20)
     }
 
     func test_didUpdateTextField_IdealQuantityEqualToZero() {
+        //given
         _ = sut?.didUpdateTextField(text: "Teste", field: ProductFields.idealQuantity)
+        //then
         XCTAssertEqual(sut?.productDTO.idealQuantity, 0)
     }
 
     func test_didUpdateTextField_QuantityEqualToZero() {
+        //given
         _ = sut?.didUpdateTextField(text: "Teste", field: ProductFields.quantity)
+        //then
         XCTAssertEqual(sut?.productDTO.quatity, 0)
     }
 }
