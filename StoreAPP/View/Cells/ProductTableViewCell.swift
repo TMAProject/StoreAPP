@@ -6,7 +6,6 @@
 //
 
 import UIKit
-// swiftlint:disable line_length
 
 class ProductTableViewCell: UITableViewCell {
     static let reuseIdentifier = "ProductTableViewCell"
@@ -30,7 +29,7 @@ class ProductTableViewCell: UITableViewCell {
     let icon: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        
+
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
