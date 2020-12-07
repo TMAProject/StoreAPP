@@ -62,11 +62,12 @@ extension ProductListViewModel {
     }
 
     public func unfavoriteFromCell(at index: Int) -> ProductViewModel? {
-        if numberOfProducts >= index {
+        if numberOfProducts > index {
             let product = productList[index]
             _ = repository.unfavorite(object: product.product)
             return product
-        } else { return nil }
+        }
+		return nil
     }
 
 }
