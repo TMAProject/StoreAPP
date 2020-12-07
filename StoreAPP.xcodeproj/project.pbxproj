@@ -16,6 +16,8 @@
 		9F27482B25750F3200D07FA1 /* ContextualAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F27482A25750F3200D07FA1 /* ContextualAction.swift */; };
 		9F274839257515F500D07FA1 /* ProductListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F274838257515F500D07FA1 /* ProductListViewModelTests.swift */; };
 		9F27485C2576632500D07FA1 /* CreateProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F27485B2576632500D07FA1 /* CreateProductViewModel.swift */; };
+		9FB40A52257E492600D97432 /* ProductListActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB40A51257E492600D97432 /* ProductListActionTests.swift */; };
+		9FB40A57257E4C2E00D97432 /* ContextualActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB40A56257E4C2E00D97432 /* ContextualActionsTests.swift */; };
 		9FD7C61D256D45E000E25C77 /* ProductRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD7C61C256D45E000E25C77 /* ProductRepositoryTest.swift */; };
 		A2206B502577CE10006F3CF3 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2206B4F2577CE10006F3CF3 /* EmptyStateView.swift */; };
 		A2373235256E9B5F00D08892 /* CreateProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2373234256E9B5F00D08892 /* CreateProductTableViewController.swift */; };
@@ -74,6 +76,8 @@
 		9F27482A25750F3200D07FA1 /* ContextualAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextualAction.swift; sourceTree = "<group>"; };
 		9F274838257515F500D07FA1 /* ProductListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModelTests.swift; sourceTree = "<group>"; };
 		9F27485B2576632500D07FA1 /* CreateProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductViewModel.swift; sourceTree = "<group>"; };
+		9FB40A51257E492600D97432 /* ProductListActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListActionTests.swift; sourceTree = "<group>"; };
+		9FB40A56257E4C2E00D97432 /* ContextualActionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextualActionsTests.swift; sourceTree = "<group>"; };
 		9FD7C61C256D45E000E25C77 /* ProductRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepositoryTest.swift; sourceTree = "<group>"; };
 		A2206B4F2577CE10006F3CF3 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		A2373234256E9B5F00D08892 /* CreateProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductTableViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				18B93AEF25751EF100C952CE /* CategoryEnumTests.swift */,
 				A2E4932925751099001DFC71 /* ProductViewModelTest.swift */,
 				A27B15C225752A1100E4335B /* FavoriteListViewModelTest.swift */,
+				9FB40A51257E492600D97432 /* ProductListActionTests.swift */,
+				9FB40A56257E4C2E00D97432 /* ContextualActionsTests.swift */,
 			);
 			path = StoreAPPTests;
 			sourceTree = "<group>";
@@ -483,11 +489,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FB40A57257E4C2E00D97432 /* ContextualActionsTests.swift in Sources */,
 				ECBB891B25750E41004EE217 /* CoreDataServiceTest.swift in Sources */,
 				18B93AF025751EF100C952CE /* CategoryEnumTests.swift in Sources */,
 				A27B15C325752A1100E4335B /* FavoriteListViewModelTest.swift in Sources */,
 				ECBE1A0E2566BE7900421F29 /* StoreAPPTests.swift in Sources */,
 				A2E4932A25751099001DFC71 /* ProductViewModelTest.swift in Sources */,
+				9FB40A52257E492600D97432 /* ProductListActionTests.swift in Sources */,
 				9FD7C61D256D45E000E25C77 /* ProductRepositoryTest.swift in Sources */,
 				9F274839257515F500D07FA1 /* ProductListViewModelTests.swift in Sources */,
 			);
