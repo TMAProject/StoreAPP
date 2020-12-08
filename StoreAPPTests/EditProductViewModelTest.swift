@@ -14,6 +14,7 @@ class EditViewModelTest: XCTestCase {
     var productMock: Product?
     var sut: EditProductViewModel?
     let formField = ProductForm.edit
+    let repository = ProductRepository()
 
     let persistentStore: NSPersistentContainer = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -51,7 +52,7 @@ class EditViewModelTest: XCTestCase {
         //given
         let ordenatedFields = sut?.ordenatedFields
         let mockedString = ["": ["\(self.productMock!.name)", "\(self.productMock!.category)"],
-                            "Estoque": ["\(self.productMock!.quantity)", "\(self.productMock!.idealQuantity)"]]
+                            "Estoque(unidade de medida)": ["\(self.productMock!.quantity)", "\(self.productMock!.idealQuantity)"]]
         //then
         XCTAssertEqual(ordenatedFields, mockedString)
     }
@@ -74,13 +75,13 @@ class EditViewModelTest: XCTestCase {
         let numberOfRows = sut?.numberOfRowsForSection(at: 1)
 
         //then
-        XCTAssertEqual(formField.fields["Estoque"]?.count, numberOfRows)
+        XCTAssertEqual(formField.fields["Estoque(unidade de medida)"]?.count, numberOfRows)
     }
 
     func test_fieldsName_EqualToFormFields() {
         //given
         let fieldName = sut?.fieldName(section: 1, index: 0)
-        let expectedName = formField.fields["Estoque"]?[0]
+        let expectedName = formField.fields["Estoque(unidade de medida)"]?[0]
         //then
         XCTAssertEqual(fieldName, expectedName)
     }
