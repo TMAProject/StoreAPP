@@ -27,7 +27,7 @@ class EditViewModelTest: XCTestCase {
         let entity = NSEntityDescription.entity(forEntityName: "Product", in: persistentStore.viewContext)
         let product = Product(entity: entity!, insertInto: persistentStore.viewContext)
 
-        product.setValue("productName", forKey: "name")
+        product.setValue("productNameFromEditViewModel", forKey: "name")
         product.setValue(1, forKey: "category")
         product.setValue(15, forKey: "idealQuantity")
         product.setValue(10, forKey: "quantity")
@@ -36,6 +36,7 @@ class EditViewModelTest: XCTestCase {
     }
 
     override func tearDown() {
+        cleanRepository()
         productMock = nil
     }
 
@@ -126,5 +127,11 @@ class EditViewModelTest: XCTestCase {
         _ = sut?.didUpdateTextField(text: "Teste", field: ProductFields.quantity)
         //then
         XCTAssertEqual(sut?.productDTO.quatity, 0)
+    }
+    
+    private func cleanRepository() {
+        for product in repository.getAll() {
+            _ = repository.delete(object: product)
+        }
     }
 }
