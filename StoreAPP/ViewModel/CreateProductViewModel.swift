@@ -9,13 +9,11 @@ import Foundation
 
 class CreateProductViewModel: ViewModel {
 
-    private let formFields = ProductForm.create
-    private let repository = ProductRepository()
-    private var product: ProductDTO?
+    let formFields = ProductForm.create
+    let repository = ProductRepository()
+    var productDTO = ProductDTO.empty
 
     public var handleDismiss: (() -> Void)?
-    public var cells: [FieldTableViewCell] = []
-
     public var category: Category
 
     init(category: Category) {
@@ -27,58 +25,43 @@ class CreateProductViewModel: ViewModel {
     }
 
     @objc func cancel() {
-        // Coordinator code comes here.
         handleDismiss?()
     }
 
     @objc func save() {
-        product = createProductFromFormField()
-        guard let product = product else { fatalError("This product don't exist") }
-        if let savedProduct = repository.add(object: product) {
-            print("Produto: \(savedProduct.name) salvo.")
-        }
+        productDTO.category = Int16(category.rawValue)
+        _ = repository.add(object: productDTO)
         handleDismiss?()
     }
 
-    func getSectionName(at section: Int) -> String {
-        return formFields.sections[section]
+}
+
+extension CreateProductViewModel {
+
+    public func sectionName(at index: Int) -> String {
+        return formFields.sections[index]
     }
 
-    func numberOfRows(at section: Int) -> Int {
-        let sectionName = getSectionName(at: section)
-        return formFields.fields[sectionName]?.count ?? 0
+    public func numberOfRowsForSection(at index: Int) -> Int {
+        let sectionName = formFields.sections[index]
+		return formFields.fields[sectionName]!.count 
     }
 
-    func getFieldBySectionName(section: Int, at index: Int) -> String? {
-        let sectionName = getSectionName(at: section)
-        return formFields.fields[sectionName]?[index]
+    public func fieldName(section: Int, index: Int) -> String? {
+        formFields.fields[sectionName(at: section)]![index]
     }
 
-    private func createProductFromFormField() -> ProductDTO {
-        var name: String = ""
-        var quantity: Int32 = 0
-        var idealQuantity: Int32 = 0
+}
 
-        for cell in cells {
-            switch cell.label.text {
-            case "Nome":
-                name = cell.textField.text ?? ""
-            case "Quantidade":
-                quantity = Int32(cell.textField.text!) ?? 0
-            case "Quantidade ideal":
-                idealQuantity = Int32(cell.textField.text!) ?? 0
-            default:
-                break
-            }
+extension CreateProductViewModel: ProductFieldDelegate {
+    func didUpdateTextField(text: String, field: ProductFields) {
+        switch field {
+        case .name:
+            self.productDTO.name = text
+        case .quantity:
+            self.productDTO.quatity = Int32(text) ?? 0
+        case .idealQuantity:
+            self.productDTO.idealQuantity = Int32(text) ?? 0
         }
-        return ProductDTO(name: name, category: Int16(category.rawValue),
-                          quatity: quantity,
-                          idealQuantity: idealQuantity,
-                          favorite: false)
-    }
-
-    func bindCell(cell: FieldTableViewCell?) {
-        guard let fieldTableViewCell = cell else { return }
-        cells.append(fieldTableViewCell)
     }
 }

@@ -22,20 +22,20 @@ protocol SwipeAction {
 class ContextualAction<Action: SwipeAction> {
 
     private var contextualAction: UIContextualAction?
-    private var handler: UIContextualAction.Handler?
+    var handler: UIContextualAction.Handler?
 
     private var actions: [Action]!
-    private var contextuals: [UIContextualAction] = []
     private let indexRow: Int
+    public var contextuals: [UIContextualAction] = []
     weak var delegate: SwipeActionDelegate?
 
-    init(_ delegate: SwipeActionDelegate, actions: [Action], index: Int) {
+    init(_ delegate: SwipeActionDelegate?, actions: [Action], index: Int) {
         self.delegate = delegate
         self.indexRow = index
         self.addContextuals(actions: actions)
     }
 
-    private func addContextuals(actions: [Action]) {
+    public func addContextuals(actions: [Action]) {
         for action in actions {
             self.handler = { _, _, completion in
                 self.delegate?.didPerform(action: action, index: self.indexRow)

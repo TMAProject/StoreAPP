@@ -13,6 +13,10 @@ struct ProductDTO {
     var quatity: Int32
     var idealQuantity: Int32
     var favorite: Bool
+
+    static var empty: ProductDTO {
+        ProductDTO(name: "Novo Produto", category: 0, quatity: 1, idealQuantity: 1, favorite: false)
+    }
 }
 
 struct ProductViewModel: ViewModel, Equatable {
