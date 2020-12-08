@@ -12,7 +12,7 @@ class CustomSectionView: UITableViewHeaderFooterView {
 
     let label: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 13, weight: .light)
+        label.font = .systemFont(ofSize: 14, weight: .light)
         label.textColor = .label
 
         label.translatesAutoresizingMaskIntoConstraints = false

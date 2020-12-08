@@ -47,7 +47,7 @@ class CategoriesView: UITableViewHeaderFooterView {
 
     private func configureLayout() {
         NSLayoutConstraint.activate([
-            self.collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 2),
+            self.collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 24),
             self.collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             self.collectionView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12),
             self.collectionView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12)
