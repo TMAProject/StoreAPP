@@ -44,7 +44,7 @@ extension CreateProductViewModel {
 
     public func numberOfRowsForSection(at index: Int) -> Int {
         let sectionName = formFields.sections[index]
-        return formFields.fields[sectionName]?.count ?? 0
+		return formFields.fields[sectionName]!.count 
     }
 
     public func fieldName(section: Int, index: Int) -> String? {
