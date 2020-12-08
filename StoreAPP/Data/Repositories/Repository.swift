@@ -16,10 +16,3 @@ protocol Repository {
     func add(object: ObjectDTO) -> Object?
     func delete(object: Object) -> Object?
 }
-
-extension Repository {
-
-    func get(object: Object) -> Object? {
-        return nil
-    }
-}
