@@ -63,13 +63,13 @@ class CreateProductViewModelTests: XCTestCase {
          let numberOfRows = sut?.numberOfRowsForSection(at: 1)
 
          //then
-         XCTAssertEqual(formField.fields["Estoque"]?.count, numberOfRows)
+         XCTAssertEqual(formField.fields["Estoque(unidade de medida)"]?.count, numberOfRows)
      }
 
      func test_fieldsName_EqualToFormFields() {
          //given
          let fieldName = sut?.fieldName(section: 1, index: 0)
-         let expectedName = formField.fields["Estoque"]?[0]
+         let expectedName = formField.fields["Estoque(unidade de medida)"]?[0]
          //then
          XCTAssertEqual(fieldName, expectedName)
      }
@@ -77,7 +77,7 @@ class CreateProductViewModelTests: XCTestCase {
     func test_sectionName_EqualToFormFields() {
            XCTAssertEqual(sut?.sectionName(at: 1), formField.sections[1])
     }
-    
+
      func test_didUpdateTextField_EqualToProductDTOName() {
          //given
          _ = sut?.didUpdateTextField(text: "Teste", field: ProductFields.name)
