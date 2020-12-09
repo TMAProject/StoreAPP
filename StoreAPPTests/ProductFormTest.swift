@@ -15,12 +15,12 @@ class ProductFormTest: XCTestCase {
 
     func test_section_CreateSectionEqualToGivenArray() {
         let createArray = productForm.create.sections
-        XCTAssertEqual(["", "Estoque"], createArray)
+        XCTAssertEqual(["", "Estoque(unidade de medida)"], createArray)
     }
 
     func test_section_EditSectionEqualToGivenArray() {
         let createArray = productForm.edit.sections
-        XCTAssertEqual(["", "Estoque"], createArray)
+        XCTAssertEqual(["", "Estoque(unidade de medida)"], createArray)
     }
 
     func test_section_EditNumberOfSectionsEqualToGivenValue() {
@@ -34,13 +34,15 @@ class ProductFormTest: XCTestCase {
     }
 
     func test_section_CreateFieldsEqualToGivenValue() {
+		let expectedDictionary = ["": ["Nome"], "Estoque(unidade de medida)": ["Quantidade", "Quantidade ideal"]]
         let dictionaryField = productForm.create.fields
-        XCTAssertEqual(["": ["Nome"], "Estoque": ["Quantidade", "Quantidade ideal"]], dictionaryField)
+        XCTAssertEqual(expectedDictionary, dictionaryField)
     }
 
     func test_section_EditFieldsEqualToGivenValue() {
+		let expectedDictionary = ["": ["Nome"], "Estoque(unidade de medida)": ["Quantidade", "Quantidade ideal"]]
         let dictionaryField = productForm.edit.fields
-        XCTAssertEqual(["": ["Nome"], "Estoque": ["Quantidade", "Quantidade ideal"]], dictionaryField)
+        XCTAssertEqual(expectedDictionary, dictionaryField)
     }
 
     func test_keyBoardType_KeyboardTypeForNameEqualToGivenKeyboardType() {

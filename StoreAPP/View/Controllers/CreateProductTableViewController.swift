@@ -59,7 +59,7 @@ extension CreateProductTableViewController {
         if section == 1 {
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomSectionView.reuseIdentifier) as? CustomSectionView
             guard let headerView = view else { return UIView() }
-            headerView.configure(with: viewModel.getSectionName(at: section))
+            headerView.configure(with: viewModel.sectionName(at: section))
             headerView.contentView.backgroundColor = .systemBackground
             return headerView
         }
@@ -69,15 +69,15 @@ extension CreateProductTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows(at: section)
+        return viewModel.numberOfRowsForSection(at: section)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifier, for: indexPath) as? FieldTableViewCell
-        if let fieldName = viewModel.getFieldBySectionName(section: indexPath.section, at: indexPath.row) {
-            cell?.configure(with: fieldName)
-            viewModel.bindCell(cell: cell)
-        }
-        return cell ?? UITableViewCell()
+        let fieldName = viewModel.fieldName(section: indexPath.section, index: indexPath.row)!
+        guard let fieldCell = cell else { return FieldTableViewCell() }
+        fieldCell.delegate = viewModel
+        fieldCell.configure(with: fieldName)
+        return fieldCell
     }
 }

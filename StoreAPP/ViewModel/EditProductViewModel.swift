@@ -47,20 +47,17 @@ extension EditProductViewModel {
 
     public func numberOfRowsForSection(at index: Int) -> Int {
         let sectionName = formFields.sections[index]
-        return formFields.fields[sectionName]?.count ?? 0
+        return formFields.fields[sectionName]!.count
     }
 
     public func fieldName(section: Int, index: Int) -> String {
-        guard let fieldName = formFields.fields[sectionName(at: section)]?[index] else {
-            return " "
-        }
+        let fieldName = formFields.fields[sectionName(at: section)]![index]
         return fieldName
     }
 
     public func fieldValues(section: Int, index: Int) -> String {
-        guard let fieldValue = ordenatedFields[sectionName(at: section)]?[index] else {
-            return " "
-        }
+        let fieldValue = ordenatedFields[sectionName(at:section)]![index]
+
         return fieldValue
     }
 
