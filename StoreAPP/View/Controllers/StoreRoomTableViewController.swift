@@ -63,7 +63,7 @@ extension StoreRoomTableViewController {
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            let size = self.view.frame.height * 0.25
+			let size = self.view.frame.height * 0.3 // mudei aqui, antes era 0.25
             return size
         }
 
@@ -129,7 +129,7 @@ extension StoreRoomTableViewController {
     }
 }
 
-// TODO - remover esse protocolo desse arquivo
+// ToDo - remover esse protocolo desse arquivo
 protocol CategoryDelegate: class {
     func didSelectCategory(category: Category)
 }

@@ -53,8 +53,10 @@ class CardCategoryCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             self.cardImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.cardImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.69),
+			self.cardImage.topAnchor.constraint(equalTo: self.topAnchor), // criada nova constraint
             self.cardImage.bottomAnchor.constraint(equalTo: self.label.topAnchor, constant: -8),
             self.label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+			self.label.heightAnchor.constraint(greaterThanOrEqualToConstant: 17), // riada nova constraint
             self.label.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
