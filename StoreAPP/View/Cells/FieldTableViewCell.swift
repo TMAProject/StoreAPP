@@ -6,6 +6,7 @@
 //
 
 import UIKit
+// swiftlint:disable line_length
 
 class FieldTableViewCell: UITableViewCell {
 

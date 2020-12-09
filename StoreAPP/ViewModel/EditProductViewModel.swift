@@ -56,7 +56,7 @@ extension EditProductViewModel {
     }
 
     public func fieldValues(section: Int, index: Int) -> String {
-        let fieldValue = ordenatedFields[sectionName(at:section)]![index]
+        let fieldValue = ordenatedFields[sectionName(at: section)]![index]
 
         return fieldValue
     }

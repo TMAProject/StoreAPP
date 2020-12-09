@@ -8,6 +8,7 @@
 import XCTest
 import CoreData
 @testable import StoreAPP
+// swiftlint:disable line_length
 
 class EditViewModelTest: XCTestCase {
 
@@ -128,7 +129,7 @@ class EditViewModelTest: XCTestCase {
         //then
         XCTAssertEqual(sut?.productDTO.quatity, 0)
     }
-    
+
     private func cleanRepository() {
         for product in repository.getAll() {
             _ = repository.delete(object: product)
