@@ -77,7 +77,7 @@ extension CategoriesView: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        let size = collectionView.frame.height * 0.03
+        let size = collectionView.frame.height * 0.10 // mudei aqui, antes era 0.3
         return size
     }
 
